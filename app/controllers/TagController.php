@@ -90,7 +90,7 @@ class TagController extends BaseController {
 			$sql_extra = $sql_extra . ' LIMIT ' . $num_media;
 		}
 
-		$media_list = DB::select("SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id $sql_extra", $tag_id);
+		$media_list = DB::select("SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id $sql_extra", array($tag_id));
 
 		if (!$playlist_id) {
 			$playlist_id = Playlist::add($tag_name);
