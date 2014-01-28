@@ -47,8 +47,8 @@ Route::get('settings','SettingsController@index');
 Route::post('settings','SettingsController@save');
 Route::any('settings/todays','SettingsController@todays');
 
-Route::get('tools_validate_thumb','tools@validate_thumb');
-Route::get('tools_validate_media_tag_time','tools@validate_media_tag_time');
-Route::get('tools_join_medias_single','tools@join_medias_single');
-Route::post('tools_join_medias_single','tools@join_medias_single_post');
+Route::get('tools_validate_thumb','ToolsController@validate_thumb');
+Route::get('tools_validate_media_tag_time','ToolsController@validate_media_tag_time');
+Route::get('tools_join_medias_single','ToolsController@join_medias_single');
+Route::post('tools_join_medias_single','ToolsController@join_medias_single_post');
 

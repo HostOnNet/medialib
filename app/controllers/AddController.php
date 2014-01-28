@@ -37,7 +37,7 @@ class AddController extends BaseController
 
 		if ($num_records == 0)
 		{
-			$media_id = Media::insert_get_id(array('file_name' => "$file_name", 'time_start_hms' => "$time_start", 'time_end_hms' => "$time_end", 'description' => "$description" ));
+			$media_id = Media::insertGetId(array('file_name' => "$file_name", 'time_start_hms' => "$time_start", 'time_end_hms' => "$time_end", 'description' => "$description" ));
 			Tags::add($description, $media_id);
 			$msg .=  "<p>Added - $file_name ($time_start - $time_end)</p>";
 		}

@@ -4,7 +4,13 @@ class ToolsController extends BaseController
 {
     public function validate_thumb()
     {
-        $thumb_folder =   path('app') . Config::get('application.thumb_folder');
+        $thumb_folder =   public_path() . '//' . Config::get('app.thumb_folder');
+
+        if (!is_dir($thumb_folder))
+        {
+            die('Thumb folder not found - ' . $thumb_folder);
+        }
+
         $dh = opendir($thumb_folder);
 
         $ignore_files = array('.','..');
