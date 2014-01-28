@@ -1,0 +1,238 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color:#ddd;
+}
+
+div#page {
+	width: 90%;
+	margin: 0 auto;
+	text-align: center;
+	background-color:#fff;
+}
+
+div#content {
+	text-align:left;
+	margin:1em 0.5em;
+	min-height:700px;
+	clear:both;
+}
+
+div#footer {
+	clear:both;
+	background-color:#000;
+	color: #fff;
+	text-align:right;
+	padding: 0 1em;
+	margin: 4em 0;
+}
+
+ul#top_menu {
+	list-style-type: none;
+	height: 50px;
+	background-color: black;
+	margin: 0px;
+}
+
+ul#top_menu li {
+	float: left;
+}
+
+ul#top_menu li.menu_right {
+	float:right;
+}
+
+ul#top_menu li a,ul#top_menu li a:visited {
+	padding-right: 32px;
+	padding-left: 32px;
+	display: block;
+	line-height: 50px;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 16px;
+	color: #ffffff;
+	font-family: verdana;
+}
+
+ul#top_menu li a:hover {
+	color: yellow;
+}
+
+
+ul#top_menu ul {
+    background: #808000;
+    padding: 0;
+    position: absolute;
+    z-index: 999;
+    display: none;
+    list-style: none;
+}
+
+ul#top_menu li:hover > ul {
+    display: block;
+}
+
+ul#top_menu ul li {
+    float: none;
+    border-top: 1px solid #6b727c;
+    border-bottom: 1px solid #575f6a;
+    height:30px;
+}
+
+ul#top_menu ul li a {
+    font-size: 11px;
+    line-height: 30px;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+ul#top_menu ul li:hover {
+    background-color: #060;
+}
+
+/*  media */
+
+div.plitem {
+	display: block;
+	position: relative;
+	float: left;
+	width: 410px;
+	height: 240px;
+	border: 1px dotted;
+	margin: 5px;
+}
+
+div.pitem_txt {
+margin-top:0em;
+}
+
+
+.btn-custom { background-color: hsl(86, 79%, 44%) !important; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#daf6b5", endColorstr="#7cc817"); background-image: -khtml-gradient(linear, left top, left bottom, from(#daf6b5), to(#7cc817)); background-image: -moz-linear-gradient(top, #daf6b5, #7cc817); background-image: -ms-linear-gradient(top, #daf6b5, #7cc817); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #daf6b5), color-stop(100%, #7cc817)); background-image: -webkit-linear-gradient(top, #daf6b5, #7cc817); background-image: -o-linear-gradient(top, #daf6b5, #7cc817); background-image: linear-gradient(#daf6b5, #7cc817); border-color: #7cc817 #7cc817 hsl(86, 79%, 34%); color: #333 !important; text-shadow: 0 1px 1px rgba(255, 255, 255, 0.66); -webkit-font-smoothing: antialiased; }
+
+
+/* watch */
+
+#watch_col_player, #watch_col_form {
+	float:left;
+	width:800px;
+	margin:10px;
+}
+
+#watch_controls {
+	margin-top:1em;
+	margin-right:5em;
+	float:right;
+}
+
+#watch_time {
+	margin-top:0.8em;
+	margin-bottom:0.5em;
+}
+
+#currentTime{
+	float:left;
+	width:100px;
+}
+
+#wt_2, div#skip_time_remaining {
+	float:left;
+	margin-left:2em;
+}
+
+#wt_2, div#skip_time_more {
+    float:left;
+    margin-left:1em;
+}
+
+a.bookmark, a.bookmark:visited {
+	text-decoration:none;
+	font-family:verdana;
+	font-size:10pt;
+}
+
+a.bookmark:hover {
+	color: #ff0000;
+	text-decoration:underline;
+}
+
+a.bookmark_0 {
+    color: #009900;
+}
+
+a.bookmark_5 {
+    color: #FF6633;
+}
+
+a.bookmark_10 {
+    color: #FF0000;
+}
+
+a.bookmark_15 {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+
+a.bookmark_hot, a.bookmark_hot:visited
+{
+	color: red;
+}
+
+a.bookmark_auto, a.bookmark_auto:visited
+{
+    background-color: #325AD1;
+    color:#FFF;
+    font-weight: bold;
+}
+
+#txt_description {
+	width:721px;
+	height:560px;
+	margin-bottom: 5px;
+}
+
+#media_info_display {
+	clear:both;
+	display:block;
+	border:1px solid;
+	background-color: #ffffbb;
+	padding:1em;
+    text-align: center;
+	display:none;
+}
+
+/* auto complete */
+
+.container { width: 400px; margin: 0 auto; }
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; cursor: default; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+
+
+/* search */
+
+#search_box {
+	width:600px;
+	margin:4em auto;
+	text-align:center;
+}
+
+#search_box select {
+	width:100px;
+}
+
+/* Tag Cloud*/
+
+#tagcloud a {
+    text-decoration: none;
+}
+
+#tagcloud a:hover {
+    background-color:#ffcc00;
+}
+
+#tagcloud {
+    margin: 25px auto;
+    font: 75% Arial, "MS Trebuchet", sans-serif;
+}

@@ -1,0 +1,1 @@
+<h2>No medias found for tag: <?php echo $tag; ?></h2>

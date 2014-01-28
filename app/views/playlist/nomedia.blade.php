@@ -1,0 +1,1 @@
+<p>Playlist <b><?php echo $playlist_name; ?></b> is empty.</p>
