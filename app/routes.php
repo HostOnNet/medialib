@@ -38,7 +38,7 @@ Route::get('playlists','PlaylistController@listPlaylist'); # shows all playlist
 Route::get('playlist/empty/{playlist_id}','PlaylistController@emptyPlaylist')->where('playlist_id', '[0-9]+'); # delete medias from playlist
 Route::get('playlist/watch/{playlist_id}','PlaylistController@playlist_watch')->where('playlist_id', '[0-9]+'); # redirect to first media in playlist
 Route::get('playlist/{playlist_id}','PlaylistController@view')->where('playlist_id', '[0-9]+'); # set skip_to_bookmark and redirect to playlist/watch/(:num)
-Route::get('playlist_make/(:num)','PlaylistController@make');
+Route::get('playlist_make/{playlist_id}','PlaylistController@make')->where('playlist_id','[0-9]+');
 
 Route::get('ajax/like/(:any)','AjaxController@like');
 Route::get('ajax_tag_suggest','AjaxController@tag_suggest');

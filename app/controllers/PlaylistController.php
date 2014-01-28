@@ -110,7 +110,7 @@ class PlaylistController extends BaseController
 
             Playlist::emptyById($playlist_id);
 
-            $media_list = DB::table('media_tag_time')->order_by('likes','DESC')->get();
+            $media_list = DB::table('media_tag_time')->orderBy('likes','DESC')->get();
 
             foreach ($media_list as $media)
             {
@@ -139,13 +139,13 @@ class PlaylistController extends BaseController
 
             Playlist::emptyById($playlist_id);
 
-            $media_list = DB::table('medias')->where('likes','>',1)->order_by('likes','DESC')->get();
+            $media_list = DB::table('medias')->where('likes','>',1)->orderBy('likes','DESC')->get();
 
             foreach ($media_list as $media)
             {
                 $time_start = '00:00:00';
 
-                $best_time = DB::table('media_tag_time')->where('media_id','=',$media->id)->order_by('likes','DESC')->first('time_start');
+                $best_time = DB::table('media_tag_time')->where('media_id','=',$media->id)->orderBy('likes','DESC')->first(array('time_start'));
 
                 if (!empty($best_time))
                 {
