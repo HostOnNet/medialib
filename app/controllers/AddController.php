@@ -184,7 +184,7 @@ class AddController extends BaseController
 
 		$video_folder = Config::get('app.video_folder');
 		$thumb_folder = Config::get('app.thumb_folder');
-		$base_folder = path('app');
+		$base_folder = public_path();
 
 		foreach($media_list as $media)
 		{
@@ -207,9 +207,9 @@ class AddController extends BaseController
 				die('Video Not Found ' . $file_path);
 			}
 
-			$thumb_path = $base_folder . $thumb_folder . $media_id . '.jpg';
-			$thumb_path_tmp = $base_folder . $thumb_folder . 'tmp_' . $media_id. '.jpg';
-			$thumb_url =  '/' . $thumb_folder . $media_id . '.jpg';
+			$thumb_path = $base_folder . '\\' . $thumb_folder . $media_id . '.jpg';
+			$thumb_path_tmp = $base_folder . '\\' . $thumb_folder . 'tmp_' . $media_id. '.jpg';
+			$thumb_url =  '/' . $thumb_folder . '\\' . $media_id . '.jpg';
 
 			if (file_exists($thumb_path))
 			{
@@ -249,7 +249,7 @@ class AddController extends BaseController
 
 		$video_folder = Config::get('app.video_folder');
 		$thumb_folder = Config::get('app.thumb_folder');
-		$base_folder = path('app');
+		$base_folder = public_path();
 
 		$file_path = $video_folder  . $media_file_name;
 
@@ -258,9 +258,14 @@ class AddController extends BaseController
 			die('Video Not Found');
 		}
 
-		$thumb_path = $base_folder . $thumb_folder . $media_id . '.jpg';
-		$thumb_path_tmp = $base_folder . $thumb_folder . 'tmp_' . $media_id. '.jpg';
-		$thumb_url =  '/' .  $thumb_folder . $media_id . '.jpg';
+        if (!is_dir($base_folder . '\\' . $thumb_folder))
+        {
+            die('Thumb folder not found ');
+        }
+
+		$thumb_path = $base_folder . '\\' . $thumb_folder . $media_id . '.jpg';
+		$thumb_path_tmp = $base_folder . '\\' . $thumb_folder . 'tmp_' . $media_id. '.jpg';
+		$thumb_url =  '/' .  $thumb_folder . '\\' . $media_id . '.jpg';
 
 		$cmd = "G:\\Programs\\ffmpeg\\bin\\ffmpeg.exe  -ss $time  -i \"$file_path\" $thumb_path_tmp -r 1 -vframes 1 -an -vcodec mjpeg";
 		$msg .= "$cmd\n";

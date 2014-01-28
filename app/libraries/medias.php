@@ -28,7 +28,7 @@ class Medias
 
     public static function updateLikes($media_id)
     {
-        $r = DB::query('select SUM(likes) as total_likes FROM `media_tag_time` where media_id=?', $media_id);
+        $r = DB::select('select SUM(likes) as total_likes FROM `media_tag_time` where media_id=?', array($media_id));
 
         $likes = isset($r[0]->total_likes) ? $r[0]->total_likes : 0;
 
