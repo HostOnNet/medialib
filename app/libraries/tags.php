@@ -366,7 +366,7 @@ class Tags
 
         foreach ($valid_times as $my_time)
         {
-            $record = DB::table('media_tag_time')->where('media_id','=',$media_id)->where('time_start','=',$my_time)->get('likes');
+            $record = DB::table('media_tag_time')->where('media_id','=',$media_id)->where('time_start','=',$my_time)->get(array('likes'));
 
             $likes = 0;
 

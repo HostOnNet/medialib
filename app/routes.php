@@ -43,9 +43,9 @@ Route::get('playlist_make/{playlist_id}','PlaylistController@make')->where('play
 Route::get('ajax/like/(:any)','AjaxController@like');
 Route::get('ajax_tag_suggest','AjaxController@tag_suggest');
 Route::post('ajax/media_tag_time_like','AjaxController@media_tag_time_like');
-Route::get('settings','settings@index');
-Route::post('settings','settings@save');
-Route::any('settings/todays','settings@todays');
+Route::get('settings','SettingsController@index');
+Route::post('settings','SettingsController@save');
+Route::any('settings/todays','SettingsController@todays');
 
 Route::get('tools_validate_thumb','tools@validate_thumb');
 Route::get('tools_validate_media_tag_time','tools@validate_media_tag_time');
