@@ -17,7 +17,7 @@ class AddController extends BaseController
 
 		$file_name = trim($_POST['file_name']);
 
-		$file_path = Config::get('application.video_folder') . $file_name;
+		$file_path = Config::get('app.video_folder') . $file_name;
 
 		if (!file_exists($file_path)) die("File not found $file_path");
 
@@ -54,9 +54,9 @@ class AddController extends BaseController
 
     function find_media_duration($file_name)
     {
-        $file_path =  Config::get('application.video_folder') . $file_name;
+        $file_path =  Config::get('app.video_folder') . $file_name;
 
-        $cmd = Config::get('application.ffmpeg_path') . ' -i "' . $file_path . '"';
+        $cmd = Config::get('app.ffmpeg_path') . ' -i "' . $file_path . '"';
 
         @exec("$cmd 2>&1", $output);
         $output_all = implode("\n", $output);
@@ -182,8 +182,8 @@ class AddController extends BaseController
 
 		$msg = '';
 
-		$video_folder = Config::get('application.video_folder');
-		$thumb_folder = Config::get('application.thumb_folder');
+		$video_folder = Config::get('app.video_folder');
+		$thumb_folder = Config::get('app.thumb_folder');
 		$base_folder = path('app');
 
 		foreach($media_list as $media)
@@ -247,8 +247,8 @@ class AddController extends BaseController
 		$media_file_name = $media->file_name;
 		$time = round ($time/1000);
 
-		$video_folder = Config::get('application.video_folder');
-		$thumb_folder = Config::get('application.thumb_folder');
+		$video_folder = Config::get('app.video_folder');
+		$thumb_folder = Config::get('app.thumb_folder');
 		$base_folder = path('app');
 
 		$file_path = $video_folder  . $media_file_name;
