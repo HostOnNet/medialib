@@ -26,7 +26,7 @@ Route::get('add', 'AddController@index');
 Route::post('add/save', 'AddController@save');
 Route::get('rebuild_media_likes','AddController@rebuild_media_likes');
 Route::get('thumb', 'AddController@thumb'); # create thumbnail for all medias
-Route::get('thumb/(:num)/(:num)', array('as' => 'add', 'uses' => 'AddController@thumb_single')); # create thumbnail for speficied video from specified time.
+Route::get('thumb/{media_id}/{time}', 'AddController@thumb_single')->where('media_id','[0-9]+')->where('time','[0-9]+'); # create thumbnail for speficied video from specified time.
 
 
 Route::get('tags','TagController@index');
