@@ -40,7 +40,7 @@ class SearchController extends BaseController
                if ( strpos($search_string , '+') === false && empty($sql_extra) ) {
                     $media_list = DB::select("select * from medias WHERE MATCH(description) AGAINST(?)", array( $search_string ) );
                } else {
-                    $media_list = DB::query("select * from medias WHERE MATCH(description) AGAINST(? in boolean mode) $sql_extra", $search_string );
+                    $media_list = DB::select("select * from medias WHERE MATCH(description) AGAINST(? in boolean mode) $sql_extra", array($search_string) );
                }
             }
 

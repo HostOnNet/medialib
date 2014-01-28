@@ -30,7 +30,7 @@ if (!empty($media_list)){
 
 <?php
 
-$thumb_folder =  Config::get('application.thumb_folder');
+$thumb_folder =  Config::get('app.thumb_folder');
 
 $have_result = 0;
 
