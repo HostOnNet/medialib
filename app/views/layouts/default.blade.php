@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{{ $title }}</title>
 
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <script language="JavaScript" type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/paginate.css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
 
-<div id="page">
+<div id="container">
 
-    <div id="header">
+    <div class="span12">
         <ul id="top_menu">
 
             <li><a href="/">HOME</a></li>
@@ -35,13 +41,13 @@
         </ul>
     </div>
 
-    <div id="content">
+    <div id="content" class="span12">
         {{ $content }}
     </div>
 
     <div style="clear:both">&nbsp; </div>
 
-    <div id="footer"> Copyright &copy; XYL LTD</div>
+    <div id="footer"  class="span12"> Copyright &copy; XYL LTD</div>
 
 </div>
 
