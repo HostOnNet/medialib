@@ -1,9 +1,6 @@
-<div class="row">
-    <div class="span8 offset2">
-        <?php echo $page_links; ?>
-    </div>
+<div class="span8 offset2">
+    <?php echo $page_links; ?>
 </div>
-
 
 <div class="span12">
 
@@ -32,13 +29,6 @@ foreach ($media_list as $media)
 
 </div>
 
-<br />
-
-<div style="clear:both" class="center span12">
+<div class="span12">
     <?php echo $page_links; ?>
 </div>
-
-
-
-
-<script language="JavaScript" type="text/javascript" src="/js/video_queue.js"></script>

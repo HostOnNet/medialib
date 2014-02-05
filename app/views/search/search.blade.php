@@ -24,7 +24,7 @@ if (!empty($media_list)){
 					<option value="add">ADD</option>
 					<option value="append">APPEND</option>
 				</select>
-				<input type="submit" name="submit" value="Search" class="btn-custom" />
+				<input type="submit" name="submit" value="Search" class="btn-success" />
 			</form>
 		</div>
 
