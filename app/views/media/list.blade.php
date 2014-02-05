@@ -1,6 +1,11 @@
-<?php
+<div class="span4 offset4">
+    <?php echo $page_links; ?>
+</div>
 
-echo $page_links;
+
+<div class="span12">
+
+<?php
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
@@ -23,10 +28,15 @@ foreach ($media_list as $media)
 
 ?>
 
+</div>
+
 <br />
 
-<div style="clear:both"></div>
+<div style="clear:both" class="center span12">
+    <?php echo $page_links; ?>
+</div>
 
-<?php echo $page_links; ?>
+
+
 
 <script language="JavaScript" type="text/javascript" src="/js/video_queue.js"></script>

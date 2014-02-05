@@ -11,13 +11,12 @@
 <script src="/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="/css/style.css" />
-<link rel="stylesheet" href="/css/paginate.css" />
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 <body>
 
-<div id="container">
+<div class="container-fluid">
 
     <div class="span12">
         <ul id="top_menu">
@@ -45,9 +44,6 @@
         {{ $content }}
     </div>
 
-    <div style="clear:both">&nbsp; </div>
-
-    <div id="footer"  class="span12"> Copyright &copy; XYL LTD</div>
 
 </div>
 
