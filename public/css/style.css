@@ -1,32 +1,3 @@
-body {
-	margin: 0;
-	padding: 0;
-	background-color:#ddd;
-}
-
-div#page {
-	width: 90%;
-	margin: 0 auto;
-	text-align: center;
-	background-color:#fff;
-}
-
-div#content {
-	text-align:left;
-	margin:1em 0.5em;
-	min-height:700px;
-	clear:both;
-}
-
-div#footer {
-	clear:both;
-	background-color:#000;
-	color: #fff;
-	text-align:right;
-	padding: 0 1em;
-	margin: 4em 0;
-}
-
 ul#top_menu {
 	list-style-type: none;
 	height: 50px;

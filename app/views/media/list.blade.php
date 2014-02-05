@@ -1,5 +1,7 @@
-<div class="span4 offset4">
-    <?php echo $page_links; ?>
+<div class="row">
+    <div class="span8 offset2">
+        <?php echo $page_links; ?>
+    </div>
 </div>
 
 
