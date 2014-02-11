@@ -1,4 +1,4 @@
-<div class="span8 offset2">
+<div class="span8  center-block">
     <?php echo $page_links; ?>
 </div>
 

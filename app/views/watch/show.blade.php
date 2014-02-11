@@ -84,8 +84,8 @@ $is_playlist = (strpos($ref_page, 'playlist') !== false);
           <?php echo $videos_in_playlist ; ?>
 
 
-        <input type="submit" name="submit_back" value="Save" class="btn-custom"></input>
-        <input type="submit" name="submit_next" value="Next >>" class="btn-custom"></input>
+        <input type="submit" name="submit_back" value="Save" class="btn btn-success"></input>
+        <input type="submit" name="submit_next" value="Next >>" class="btn btn-success"></input>
 	</div>
 
 	</forum>

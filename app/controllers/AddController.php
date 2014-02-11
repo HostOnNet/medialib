@@ -33,7 +33,7 @@ class AddController extends BaseController
 
     	$description = "00:00:00=todo";
 
-		$num_records = Media::where_file_name_and_time_start_hms($file_name,$time_start)->count();
+		$num_records = Media::where('file_name', '=', $file_name)->where('time_start_hms', '=', $time_start)->count();
 
 		if ($num_records == 0)
 		{
