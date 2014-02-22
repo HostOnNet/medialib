@@ -150,7 +150,7 @@ class AddController extends BaseController
 
             if ($num_thumb_created > 12)
             {
-                return "<script language=\"JavaScript\"><!-- setTimeout('window.location.href = \"\"',8000); --></script>wait....";
+                return "<meta http-equiv=\"refresh\" content=\"10\"><h1>Creating thumbnail in batch. Please wait....</h1>";
                 exit;
             }
         }
