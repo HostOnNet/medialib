@@ -18,27 +18,28 @@
 
 <div class="container-fluid">
 
-    <div class="span12">
-        <ul id="top_menu">
-
-            <li><a href="/">HOME</a></li>
-
-            <li>
-                <a href="/media?sort_by=id">MEDIA</a>
-                <ul>
-                    <li><a href="/media?sort_by=view_time">View Time</a></li>
-                    <li><a href="/media?sort_by=views">Views</a></li>
-                    <li><a href="/media?sort_by=likes">Likes</a></li>
-                    <li><a href="/settings">Settings</a></li>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="row">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">HOME</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">MEDIA <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/media?sort_by=id">New Medias</a></li>
+                            <li><a href="/media?sort_by=view_time">View Time</a></li>
+                            <li><a href="/media?sort_by=views">Views</a></li>
+                            <li><a href="/media?sort_by=likes">Likes</a></li>
+                            <li><a href="/settings">Settings</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/tags">TAGS</a></li>
+                    <li><a href="/playlists">PLAYLISTS</a></li>
+                    <li class="menu_right"><a href="/add">ADD</a></li>
                 </ul>
-            </li>
-
-            <li><a href="/tags">TAGS</a></li>
-            <li><a href="/playlists">PLAYLISTS</a></li>
-            <li class="menu_right"><a href="/add">ADD</a></li>
-
-        </ul>
-    </div>
+            </div>
+        </div>
+    </nav>
 
     <div id="content" class="span12">
         {{ $content }}

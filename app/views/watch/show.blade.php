@@ -7,7 +7,7 @@ $is_playlist = (strpos($ref_page, 'playlist') !== false);
 <script language="JavaScript" type="text/javascript" src="/js/jquery.autocomplete.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/textarea_caret.js"></script>
 
-<p style="margin-left:0.5em"><?php echo $media->file_name; ?> [<span id="media_id"><?php echo $media->id; ?></span>] [Likes: <?php echo $media->likes ?>]  [Views: <?php echo $media->views; ?>] <?php if ($ref_page == 'random-search') echo ' ' . Playlist::getTotalVideos(Playlist::getId('WATCH')); ?></p>
+<p><?php echo $media->file_name; ?> [<span id="media_id"><?php echo $media->id; ?></span>] [Likes: <?php echo $media->likes ?>]  [Views: <?php echo $media->views; ?>] <?php if ($ref_page == 'random-search') echo ' ' . Playlist::getTotalVideos(Playlist::getId('WATCH')); ?></p>
 
 <div id="watch_col_form">
 	<form method="post" action="/media/save" id="media_edit">

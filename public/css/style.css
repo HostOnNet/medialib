@@ -1,68 +1,6 @@
 div#content {
     padding-top: 2em;
-}
-
-ul#top_menu {
-	list-style-type: none;
-	height: 50px;
-	background-color: black;
-	margin: 0px;
-}
-
-ul#top_menu li {
-	float: left;
-}
-
-ul#top_menu li.menu_right {
-	float:right;
-}
-
-ul#top_menu li a,ul#top_menu li a:visited {
-	padding-right: 32px;
-	padding-left: 32px;
-	display: block;
-	line-height: 50px;
-	text-decoration: none;
-	font-weight: bold;
-	font-size: 16px;
-	color: #ffffff;
-	font-family: verdana;
-}
-
-ul#top_menu li a:hover {
-	color: yellow;
-}
-
-
-ul#top_menu ul {
-    background: #808000;
-    padding: 0;
-    position: absolute;
-    z-index: 999;
-    display: none;
-    list-style: none;
-}
-
-ul#top_menu li:hover > ul {
-    display: block;
-}
-
-ul#top_menu ul li {
-    float: none;
-    border-top: 1px solid #6b727c;
-    border-bottom: 1px solid #575f6a;
-    height:30px;
-}
-
-ul#top_menu ul li a {
-    font-size: 11px;
-    line-height: 30px;
-    font-variant: small-caps;
-    font-weight: bold;
-}
-
-ul#top_menu ul li:hover {
-    background-color: #060;
+    padding:1em;
 }
 
 /*  media */
@@ -83,14 +21,12 @@ margin-top:0em;
 }
 
 
-
-
 /* watch */
 
 #watch_col_player, #watch_col_form {
 	float:left;
 	width:800px;
-	margin:10px;
+	margin-top:10px;
 }
 
 #watch_controls {
