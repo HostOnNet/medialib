@@ -199,7 +199,7 @@ $(document).ready(function(){
         $('#skip_time_more').hide();
 		time_to_seek_hh_mm_ss = $(this).attr('alt');
 		var time_to_seek = hhmmssms2ms(time_to_seek_hh_mm_ss);
-        var cursor_to_index = $('#txt_description').text().search(time_to_seek_hh_mm_ss);
+        var cursor_to_index = $('#txt_description').val().search(time_to_seek_hh_mm_ss);
         if (cursor_to_index > 1) {
             cursor_to_index = cursor_to_index + time_to_seek_hh_mm_ss.length + 3;
             $('#txt_description').caretTo(cursor_to_index);
