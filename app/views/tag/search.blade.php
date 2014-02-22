@@ -15,6 +15,7 @@
 </form>
 </div>
 
+<div class="row">
 <?php
 
 $thumb_folder = Config::get('app.thumb_folder');
@@ -27,10 +28,11 @@ foreach ($media_list as $media)
 	$thumb_uri =  '/' . $thumb_folder . $media_id . '.jpg';
 
 	echo "
-		<div class=\"plitem\">
-			<a href=\"/watch/$media_id/tag-$tag\" class=video_player>
-				<img src=$thumb_uri width=384 height=216>
-			</a>
-			<div> " . Tags::get_keywords($description,50) . "</div>
-		</div>";
+		<div class=\"col-xs-6 col-md-3\">
+			<a href=\"/watch/$media_id/tag-$tag\" class=thumbnail>
+				<img src=$thumb_uri>
+			</a></div>";
 }
+?>
+
+</div>
