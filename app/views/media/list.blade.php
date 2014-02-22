@@ -2,7 +2,7 @@
     <?php echo $page_links; ?>
 </div>
 
-<div class="span12">
+<div class="row">
 
 <?php
 
@@ -16,18 +16,17 @@ foreach ($media_list as $media)
 	$thumb_name = $thumb_folder . $id . '.jpg';
 
 	echo "
-	<div class=\"plitem\">
-		<a href=/watch/$id/media-" . $page . " class=video_player>
-			<img src=$thumb_name width=384 height=216>
+	<div class=\"col-xs-6 col-md-3\">
+		<a href=/watch/$id/media-" . $page . " class=thumbnail>
+			<img src=$thumb_name>" .  Tags::get_keywords($media->description,50) . "
 		</a>
-		<div class=pitem_txt>" .  Tags::get_keywords($media->description,50) . "</div>
 	</div>
 	";
 }
 
 ?>
 
-</div>
+</ul>
 
 <div class="span12">
     <?php echo $page_links; ?>

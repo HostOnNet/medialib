@@ -3,24 +3,6 @@ div#content {
     padding:1em;
 }
 
-/*  media */
-
-div.plitem {
-    display: block;
-    position: relative;
-    float: left;
-    width: 440px;
-    height: 280px;
-    border: 1px dotted;
-    margin: 10px;
-    padding: 20px;
-}
-
-div.pitem_txt {
-margin-top:0em;
-}
-
-
 /* watch */
 
 #watch_col_player, #watch_col_form {
