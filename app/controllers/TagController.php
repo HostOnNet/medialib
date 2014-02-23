@@ -18,11 +18,11 @@ class TagController extends BaseController {
 
         if ($tag == 'todo')
         {
-            $media_list = DB::select('SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY MA.id ASC', array($tag_id) );
+            $media_list = DB::select('SELECT MA.id, MA.description FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY MA.id ASC', array($tag_id) );
         }
         else
         {
-            $media_list = DB::select('SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes DESC', array($tag_id) );
+            $media_list = DB::select('SELECT MA.id, MA.description FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes DESC', array($tag_id) );
         }
 
 		$data = array('media_list' => $media_list, 'tag_id' => $tag_id, 'tag'=>$tag);

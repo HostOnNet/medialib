@@ -22,9 +22,9 @@ $thumb_folder = Config::get('app.thumb_folder');
 
 foreach ($media_list as $media)
 {
-    $media_id = $media->media_id;
+    $media_id = $media->id;
     $description = $media->description;
-	$file_name = $media->file_name;
+
 	$thumb_uri =  '/' . $thumb_folder . $media_id . '.jpg';
 
 	echo "
