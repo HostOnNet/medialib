@@ -200,6 +200,7 @@ $(document).ready(function(){
 		time_to_seek_hh_mm_ss = $(this).attr('alt');
 		var time_to_seek = hhmmssms2ms(time_to_seek_hh_mm_ss);
         var cursor_to_index = $('#txt_description').val().search(time_to_seek_hh_mm_ss);
+        highlight_bookmarks(time_to_seek_hh_mm_ss);
         if (cursor_to_index > 1) {
             cursor_to_index = cursor_to_index + time_to_seek_hh_mm_ss.length + 3;
             $('#txt_description').caretTo(cursor_to_index);
@@ -296,6 +297,39 @@ $(document).ready(function(){
     $('#skip_time_remaining').click(function() {
         $('#media_edit').submit();
     });
+
+    function highlight_bookmarks(time_to_seek_hh_mm_ss)
+    {
+        var pattern = time_to_seek_hh_mm_ss + " = ([^\|,]*)";
+
+        var description = $('#txt_description').val();
+        var patt1 = new RegExp(pattern);
+        var current_keyword = patt1.exec(description)[1];
+
+        var bookmarks = description.split("|");
+        var bookmark = '';
+
+        var num_bookmakrs = bookmarks.length;
+
+        for (var i = 0; i < num_bookmakrs; i++)
+        {
+            bookmark = bookmarks[i];
+            var bookmark_parts = bookmark.split("=");
+            var bookmark_time = bookmark_parts[0].replace(/^\s+|\s+$/g, '');
+            $("a[alt='" + bookmark_time + "']").removeClass("current_keyword current_keyword_live");
+
+            if (bookmark.indexOf(current_keyword) != -1)
+            {
+                $("a[alt='" + bookmark_time + "']").addClass("current_keyword");
+
+                if (time_to_seek_hh_mm_ss == bookmark_time)
+                {
+                    $("a[alt='" + bookmark_time + "']").addClass("current_keyword_live");
+                }
+            }
+        }
+
+    }
 
 	player.addEventListener ('MediaPlayerTimeChanged', handleEvents, false);
 

@@ -78,6 +78,17 @@ a.bookmark_auto, a.bookmark_auto:visited
     font-weight: bold;
 }
 
+a.current_keyword {
+    background-color: aqua;
+}
+
+a.current_keyword_live {
+    font-variant: small-caps;
+    font-weight: bold;
+    color: wheat;
+    background-color: brown;
+}
+
 #txt_description {
 	width:721px;
 	height:560px;
