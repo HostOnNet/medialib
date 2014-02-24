@@ -125,36 +125,33 @@ if ($is_playlist)
     $autoforward_duration = Settings::get('autoforward_duration');
     $autoforward =  ($autoforward_duration > 0) ? 1 : 0;
 
-    //if ($autoforward)
-   // {
-        if (strlen($skip_to_bookmark) > 2)
+    if (strlen($skip_to_bookmark) > 2)
+    {
+        if ($skip_to_bookmark == 'auto')
         {
-            if ($skip_to_bookmark == 'auto')
-            {
-                $media_tag_time = DB::table('media_tag_time')->where('media_id','=',$media->id)->first();
-                $time_start = $media_tag_time->time_start;
-            }
-            else
-            {
-                $skip_to_bookmark_done = 1;
-                $time_start = Tags::getTagTime($media->description, $skip_to_bookmark, $media->id);
-            }
+            $media_tag_time = DB::table('media_tag_time')->where('media_id','=',$media->id)->first();
+            $time_start = $media_tag_time->time_start;
         }
-        else if (strpos($ref_page, 'x'))
+        else
         {
-            $ref_page_parts = explode('x',$ref_page);
-            $pm_id = $ref_page_parts[1];
-            $media_tag_time_record = DB::table('playlist_media')->where('pm_id','=',$pm_id)->first();
-            $time_start = $media_tag_time_record->pm_time_start;
+            $skip_to_bookmark_done = 1;
+            $time_start = Tags::getTagTime($media->description, $skip_to_bookmark, $media->id);
         }
+    }
+    else if (strpos($ref_page, 'x'))
+    {
+        $ref_page_parts = explode('x',$ref_page);
+        $pm_id = $ref_page_parts[1];
+        $media_tag_time_record = DB::table('playlist_media')->where('pm_id','=',$pm_id)->first();
+        $time_start = $media_tag_time_record->pm_time_start;
+    }
 
-        $time_start_ms = Time::hmsms2ms($time_start);
-        $time_end_ms = $time_start_ms + ($autoforward_duration * 1000);
-   // }
+    $time_start_ms = Time::hmsms2ms($time_start);
+    $time_end_ms = $time_start_ms + ($autoforward_duration * 1000);
+
 }
 
-$bookmark_links = Tags::get_bookmarks($media->description, $media->id);
-echo "<div>$bookmark_links</div>";
+echo "<div>" . Tags::get_bookmarks($media->description, $media->id) . "</div>";
 
 ?>
 
