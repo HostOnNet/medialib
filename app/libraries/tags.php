@@ -262,7 +262,7 @@ class Tags
 	 Generate clickable bookmark links from description
 	*/
 
-	public static function get_bookmarks($description, $media_id = 0, $time_start = '')
+	public static function get_bookmarks($description, $media_id = 0)
 	{
 		$description = Tags::sort_bookmark($description);
 		$bookmarks = explode('|',$description);
@@ -324,11 +324,6 @@ class Tags
                 else
                 {
                     $likes_name = '';
-                }
-
-                if ( $time_start == $bookmark_time)
-                {
-                    $css_class .= ' bookmark_auto';
                 }
 
                 $bookmark_links .=  "<a class='$css_class' href='#' alt=\"$bookmark_time\">$bookmark_name$likes_name</a> &nbsp; <img class='fav' src='/img/fav.png' alt=\"$bookmark_time\"> &nbsp;";

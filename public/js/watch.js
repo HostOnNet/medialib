@@ -316,15 +316,15 @@ $(document).ready(function(){
             bookmark = bookmarks[i];
             var bookmark_parts = bookmark.split("=");
             var bookmark_time = bookmark_parts[0].replace(/^\s+|\s+$/g, '');
-            $("a[alt='" + bookmark_time + "']").removeClass("current_keyword current_keyword_live");
+            $("a[alt='" + bookmark_time + "']").removeClass("current_keyword current_keyword_more");
 
             if (bookmark.indexOf(current_keyword) != -1)
             {
-                $("a[alt='" + bookmark_time + "']").addClass("current_keyword");
+                $("a[alt='" + bookmark_time + "']").addClass("current_keyword_more");
 
                 if (time_to_seek_hh_mm_ss == bookmark_time)
                 {
-                    $("a[alt='" + bookmark_time + "']").addClass("current_keyword_live");
+                    $("a[alt='" + bookmark_time + "']").addClass("current_keyword");
                 }
             }
         }

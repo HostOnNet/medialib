@@ -109,6 +109,7 @@ $is_playlist = (strpos($ref_page, 'playlist') !== false);
 
 $time_start_ms = 0;
 $time_start = '';
+$skip_to_bookmark_done = 0;
 
 if ($is_playlist)
 {
@@ -127,6 +128,7 @@ if ($is_playlist)
             }
             else
             {
+                $skip_to_bookmark_done = 1;
                 $time_start = Tags::getTagTime($media->description, $skip_to_bookmark, $media->id);
             }
         }
@@ -143,7 +145,7 @@ if ($is_playlist)
    // }
 }
 
-$bookmark_links = Tags::get_bookmarks($media->description, $media->id, $time_start);
+$bookmark_links = Tags::get_bookmarks($media->description, $media->id);
 echo "<div>$bookmark_links</div>";
 
 ?>
@@ -194,4 +196,41 @@ jQuery(function () {
 
 }
 
+if ($skip_to_bookmark_done == 1)
+{
+
+?>
+
+<script type="text/javascript">
+jQuery(function () {
+
+    var description = "<?php echo $media->description; ?>";
+    var current_playlist_tag_time = "<?php echo $time_start; ?>";
+    var bookmarks = description.split("|");
+    var bookmark = '';
+    var num_bookmakrs = bookmarks.length;
+
+    for (var i = 0; i < num_bookmakrs; i++)
+    {
+        bookmark = bookmarks[i];
+        var bookmark_parts = bookmark.split("=");
+        var bookmark_time = bookmark_parts[0].replace(/^\s+|\s+$/g, '');
+
+        if (bookmark.indexOf("<?php echo $skip_to_bookmark; ?>") != -1)
+        {
+            if (bookmark_time == current_playlist_tag_time)
+            {
+                $("a[alt='" + bookmark_time + "']").addClass("current_playlist_tag current_playlist_tag_more");
+            }
+            else
+            {
+                $("a[alt='" + bookmark_time + "']").addClass("current_playlist_tag_more");
+            }
+        }
+    }
+
+});
+</script>
+<?php
+}
 ?>
