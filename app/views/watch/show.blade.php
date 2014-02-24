@@ -219,7 +219,7 @@ jQuery(function () {
     {
         bookmark = bookmarks[i];
         var bookmark_parts = bookmark.split("=");
-        var bookmark_time = bookmark_parts[0].replace(/^\s+|\s+$/g, '');
+        var bookmark_time = $.trim(bookmark_parts[0]);
 
         if (bookmark.indexOf("<?php echo $skip_to_bookmark; ?>") != -1)
         {
