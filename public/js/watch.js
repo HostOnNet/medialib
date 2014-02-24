@@ -315,7 +315,7 @@ $(document).ready(function(){
         {
             bookmark = bookmarks[i];
             var bookmark_parts = bookmark.split("=");
-            var bookmark_time = bookmark_parts[0].replace(/^\s+|\s+$/g, '');
+            var bookmark_time = $.trim(bookmark_parts[0]);
             $("a[alt='" + bookmark_time + "']").removeClass("current_keyword current_keyword_more");
 
             if (bookmark.indexOf(current_keyword) != -1)
