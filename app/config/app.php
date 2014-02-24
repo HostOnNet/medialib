@@ -1,8 +1,8 @@
 <?php
 
-if (is_dir("D:\\www\\miner\\public\\dn\\vid"))
+if (is_dir("/media/truecrypt1/dn/vid/"))
 {
-    $video_folder = 'X:\\dn\\vid\\';
+    $video_folder = '/media/truecrypt1/dn/vid/';
     $thumb_folder = 'dn/thumb/';
 }
 else
@@ -37,7 +37,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://xyl2',
+	'url' => 'http://xyl',
     'video_folder' => $video_folder,
     'thumb_folder' => $thumb_folder,
     'ffmpeg_path' => 'G:\\Programs\\ffmpeg\\bin\\ffmpeg.exe',

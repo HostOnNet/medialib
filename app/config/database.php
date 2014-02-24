@@ -1,7 +1,7 @@
 <?php
 
 
-if (is_dir("D:\\www\\miner\\public\\dn\\vid"))
+if (is_dir("/media/truecrypt1/dn/vid/"))
 {
     $db_name = "playlist";
 }
