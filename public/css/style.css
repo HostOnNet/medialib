@@ -39,7 +39,6 @@ div#content {
 
 a.bookmark, a.bookmark:visited {
 	text-decoration:none;
-	font-family:verdana;
 	font-size:10pt;
 }
 
@@ -84,15 +83,14 @@ a.current_playlist_tag
 }
 
 
-a.current_keyword {
-    font-variant: small-caps;
-    font-weight: bold;
-    color: wheat;
-    background-color: brown;
+a.current_keyword,
+a.current_keyword_more {
+    background-color: #E5E5D8;
 }
 
-a.current_keyword_more {
-    background-color: aqua;
+a.current_keyword {
+    font-weight: bold;
+    font-size: 12pt;
 }
 
 
