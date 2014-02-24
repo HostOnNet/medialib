@@ -71,18 +71,18 @@ a.bookmark_hot, a.bookmark_hot:visited
 	color: red;
 }
 
-a.current_playlist_tag, a.current_playlist_tag:visited
-{
-    background-color: #325AD1;
-    color:#FFF;
+a.current_playlist_tag,
+a.current_playlist_tag_more {
     font-weight: bold;
+    background-color: blueviolet;
+    color:#FFF;
 }
 
-a.current_playlist_tag_more {
-    font-variant: small-caps;
-    font-weight: bold;
-    font-size:14pt;
+a.current_playlist_tag
+{
+    background-color: blue;
 }
+
 
 a.current_keyword {
     font-variant: small-caps;
