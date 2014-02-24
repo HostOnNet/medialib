@@ -70,7 +70,15 @@ $is_playlist = (strpos($ref_page, 'playlist') !== false);
                             $selected = '';
                         }
 
-                        echo "<option value=\"$duration_1\" $selected>$duration_1 Sec</option>";
+                        if ($duration_1 == 0)
+                        {
+                            echo "<option value=\"$duration_1\" $selected>No Auto</option>";
+                        }
+                        else
+                        {
+                            echo "<option value=\"$duration_1\" $selected>$duration_1 Sec</option>";
+                        }
+
                     }
 
 
