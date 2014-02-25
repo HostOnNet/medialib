@@ -40,7 +40,7 @@ return array(
 	'url' => 'http://xyl',
     'video_folder' => $video_folder,
     'thumb_folder' => $thumb_folder,
-    'ffmpeg_path' => 'G:\\Programs\\ffmpeg\\bin\\ffmpeg.exe',
+    'ffmpeg_path' => '/usr/bin/avconv',
 
 	/*
 	|--------------------------------------------------------------------------

@@ -122,16 +122,16 @@ class AddController extends BaseController
                 die('Video Not Found ' . $file_path);
             }
 
-            $thumb_path = $base_folder . '\\' . $thumb_folder . $media_id . '.jpg';
-            $thumb_path_tmp = $base_folder . '\\' . $thumb_folder . 'tmp_' . $media_id. '.jpg';
-            $thumb_url =  '/' . $thumb_folder . '\\' . $media_id . '.jpg';
+            $thumb_path = $base_folder . '/' . $thumb_folder . $media_id . '.jpg';
+            $thumb_path_tmp = $base_folder . '/' . $thumb_folder . 'tmp_' . $media_id. '.jpg';
+            $thumb_url =  '/' . $thumb_folder . '/' . $media_id . '.jpg';
 
             if (file_exists($thumb_path))
             {
                  continue;
             }
 
-            $cmd = "G:\\Programs\\ffmpeg\\bin\\ffmpeg.exe  -ss $time  -i \"$file_path\" $thumb_path_tmp -r 1 -vframes 1 -an -vcodec mjpeg";
+            $cmd = Config::get('app.ffmpeg_path') . "  -ss $time  -i \"$file_path\" -f image2 -frames:v 1 $thumb_path_tmp";
             $msg .= "$cmd\n";
             flush();
             exec($cmd);
@@ -178,16 +178,16 @@ class AddController extends BaseController
             die('Video Not Found');
         }
 
-        if (!is_dir($base_folder . '\\' . $thumb_folder))
+        if (!is_dir($base_folder . '/' . $thumb_folder))
         {
             die('Thumb folder not found ');
         }
 
-        $thumb_path = $base_folder . '\\' . $thumb_folder . $media_id . '.jpg';
-        $thumb_path_tmp = $base_folder . '\\' . $thumb_folder . 'tmp_' . $media_id. '.jpg';
-        $thumb_url =  '/' .  $thumb_folder . '\\' . $media_id . '.jpg';
+        $thumb_path = $base_folder . '/' . $thumb_folder . $media_id . '.jpg';
+        $thumb_path_tmp = $base_folder . '/' . $thumb_folder . 'tmp_' . $media_id. '.jpg';
+        $thumb_url =  '/' .  $thumb_folder . '/' . $media_id . '.jpg';
 
-        $cmd = "G:\\Programs\\ffmpeg\\bin\\ffmpeg.exe  -ss $time  -i \"$file_path\" $thumb_path_tmp -r 1 -vframes 1 -an -vcodec mjpeg";
+        $cmd = Config::get('app.ffmpeg_path') . "  -ss $time  -i \"$file_path\" -f image2 -frames:v 1 $thumb_path_tmp";
         $msg .= "$cmd\n";
         flush();
         exec($cmd);
