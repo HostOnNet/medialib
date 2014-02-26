@@ -3,6 +3,8 @@
 $is_playlist = (strpos($ref_page, 'playlist') !== false);
 
 ?>
+
+<script type="text/javascript">var media_volume = <?php echo $media->volume; ?>;</script>
 <script language="JavaScript" type="text/javascript" src="/js/watch.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/jquery.autocomplete.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/textarea_caret.js"></script>
