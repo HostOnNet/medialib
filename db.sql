@@ -1,119 +1,73 @@
--- --------------------------------------------------------
-
---
--- Table structure for table `logs`
---
-
-CREATE TABLE IF NOT EXISTS `logs` (
+CREATE TABLE `logs` (
   `log_id` int(11) NOT NULL AUTO_INCREMENT,
-  `log_type` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `log_type` varchar(100) COLLATE utf8_general_ci NOT NULL,
   `log_mid` int(11) NOT NULL,
   `log_time` int(11) NOT NULL,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=400 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
+CREATE TABLE `media_tag_time` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `media_id` int(11) NOT NULL,
+  `time_start` varchar(13) COLLATE utf8_general_ci NOT NULL,
+  `likes` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Table structure for table `medias`
---
-
-CREATE TABLE IF NOT EXISTS `medias` (
+CREATE TABLE `medias` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `file_name` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `time_start_hms` varchar(9) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `time_end_hms` varchar(9) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `time_start_hms` varchar(9) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `time_end_hms` varchar(9) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `likes` int(11) NOT NULL DEFAULT '0',
   `view_time` int(11) NOT NULL,
   `view_again` int(11) NOT NULL DEFAULT '0',
   `view_again_days` tinyint(2) NOT NULL,
   `views` int(11) NOT NULL,
+  `volume` int(3) NOT NULL DEFAULT '150',
   PRIMARY KEY (`id`),
   FULLTEXT KEY `description` (`description`),
   FULLTEXT KEY `description_2` (`description`),
   FULLTEXT KEY `description_3` (`description`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=881 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `media_tag_time`
---
-
-CREATE TABLE IF NOT EXISTS `media_tag_time` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `media_id` int(11) NOT NULL,
-  `time_start` varchar(13) COLLATE latin1_general_ci NOT NULL,
-  `likes` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=687 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `playlists`
---
-
-CREATE TABLE IF NOT EXISTS `playlists` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `display_id` int(3) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `playlist_media`
---
-
-CREATE TABLE IF NOT EXISTS `playlist_media` (
+CREATE TABLE `playlist_media` (
   `pm_id` int(11) NOT NULL AUTO_INCREMENT,
   `pm_media_id` int(4) NOT NULL,
   `pm_playlist_id` int(4) NOT NULL,
   `pm_time_start` varchar(20) NOT NULL,
   PRIMARY KEY (`pm_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7599 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `settings`
---
-
-CREATE TABLE IF NOT EXISTS `settings` (
+CREATE TABLE `playlists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE latin1_general_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `display_id` int(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_general_ci NOT NULL,
   `value` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `tags`
---
-
-CREATE TABLE IF NOT EXISTS `tags` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `tag` varchar(255) NOT NULL,
-  `tag_count` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `tag` (`tag`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=172 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tag_media`
---
-
-CREATE TABLE IF NOT EXISTS `tag_media` (
+CREATE TABLE `tag_media` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tag_id` int(11) NOT NULL,
   `media_id` int(11) NOT NULL,
   `likes` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5749 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tags` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `tag` varchar(255) NOT NULL,
+  `tag_count` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tag` (`tag`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
