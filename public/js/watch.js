@@ -289,24 +289,23 @@ $(document).ready(function(){
 
     });
 
-	$('#currentTime').click(function(){
-		current_position_in_hhmmssms = $(this).text();
-		current_txt_description = $('#txt_description').attr('value');
+	$('#currentTime').click(function()
+    {
+		var current_position_in_hhmmssms = $(this).text();
+		var current_txt_description = $('#txt_description').val();
 
 		if (current_txt_description != '')
 		{
-			current_txt_description = trim(current_txt_description);
+			current_txt_description = $.trim(current_txt_description);
 			current_txt_description = current_txt_description.replace(/\|$/,'');
-			current_txt_description = trim(current_txt_description);
+			current_txt_description = $.trim(current_txt_description);
 			new_description = current_txt_description + " | " + current_position_in_hhmmssms + ' = ';
 		}
 		else
 		{
 			new_description =  current_position_in_hhmmssms + '=';
 		}
-
 		$('#txt_description').val(new_description);
-
     });
 
     $('#skip_time_remaining').click(function() {
