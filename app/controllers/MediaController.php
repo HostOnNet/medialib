@@ -45,6 +45,7 @@ class MediaController extends BaseController {
         $media_id = (int) Input::get('media_id');
         $likes = Input::get('likes');
         $description = Input::get('description');
+        $volume = Input::get('volume');
         $media_info = Media::find($media_id);
         $is_save = isset($_POST['submit_back']);
         $is_next = isset($_POST['submit_next']);
@@ -131,6 +132,8 @@ class MediaController extends BaseController {
             {
                 Settings::put('skip_to_bookmark', $skip_to_bookmark);
             }
+
+            Media::where('id', '=', $media_id)->update(array('volume' => "$volume"));
         }
 
         if ($is_save)

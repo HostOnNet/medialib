@@ -20,6 +20,7 @@ $is_playlist = (strpos($ref_page, 'playlist') !== false);
 	<textarea name="description" id="txt_description" rows="5" cols="70"><?php echo Tags::sort_bookmark($media->description); ?></textarea>
 
 	<div id="watch_controls">
+        <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" size=3 min=20 max=200>
         <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>">
         <select name="view_again">
 

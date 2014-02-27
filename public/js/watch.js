@@ -42,6 +42,7 @@ function mediaTimeUpdate(event)
     {
         player.audio.volume = media_volume;
         media_volume_set = true;
+        $('#media_info_display').html("Volume set to " + media_volume).fadeIn(1000).fadeOut(2000);
     }
 
     $('#currentTime').html(ms2hhmmssms(event));
@@ -346,5 +347,10 @@ $(document).ready(function(){
     }
 
 	player.addEventListener ('MediaPlayerTimeChanged', mediaTimeUpdate, false);
+
+    $('#volume_input').change(function(e){
+        media_volume = parseInt($(this).val());
+        media_volume_set = false;
+    });
 }
 );
