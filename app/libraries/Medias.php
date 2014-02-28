@@ -15,7 +15,7 @@ class Medias
 
 		if (is_dir($video_folder))
 		{
-			$playlist_file = $video_folder . "../playlists/live.m3u" ;
+			$playlist_file = $video_folder . '/tmp/live.m3u';
 			$fp = fopen($playlist_file,'w');
 			fwrite($fp,$playlist);
 			fclose($fp);

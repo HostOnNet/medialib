@@ -103,7 +103,7 @@ $is_playlist = (strpos($ref_page, 'playlist') !== false);
 </div>
 
 <div id="watch_col_player">
-	<embed type="application/x-vlc-plugin" name="VLC" id="vlcp" autoplay="no" loop="no" toolbar="no" volume="100" width="720" height="406" target="file:///<?php echo Config::get('app.video_folder'); ?>../playlists/live.m3u">
+	<embed type="application/x-vlc-plugin" name="VLC" id="vlcp" autoplay="no" loop="no" toolbar="no" volume="100" width="720" height="406" target="file:///<?php echo Config::get('app.video_folder'); ?>/tmp/live.m3u">
 
 	<br />
 
