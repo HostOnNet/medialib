@@ -42,7 +42,7 @@ function mediaTimeUpdate(event)
     {
         player.audio.volume = media_volume;
         media_volume_set = true;
-        $('#media_info_display').html("Volume set to " + media_volume).fadeIn(1000).fadeOut(2000);
+        $('#volume_input').fadeOut(200).fadeIn(200);
     }
 
     $('#currentTime').html(ms2hhmmssms(event));
