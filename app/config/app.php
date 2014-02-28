@@ -7,7 +7,7 @@ if (is_dir("/media/truecrypt1/dn/vid/"))
 }
 else
 {
-    $video_folder = 'J:\\1_FILIMS\\1_watched\\';
+    $video_folder = '/home/boby/store/cbt/www/';
     $thumb_folder = '1/thumb/';
 }
 
