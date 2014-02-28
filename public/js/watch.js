@@ -66,11 +66,13 @@ function trim (str)
     return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 }
 
-$(document).ready(function(){
+$(document).ready(function()
+{
 
     player = document.getElementById("vlcp");
 
-    $('#playbutton').click(function(event){
+    $('#playbutton').click(function(event)
+    {
         event.preventDefault();
         if(player)
 		{
@@ -91,24 +93,29 @@ $(document).ready(function(){
         }
     });
 
-    $('#seekten').click(function(event){
+    $('#seekten').click(function(event)
+    {
         event.preventDefault();
-        if(player){
+        if(player)
+        {
 			vlc_seek(player.input.time + 10000);
         }
     });
 
-    $('#seek_ten').click(function(event){
+    $('#seek_ten').click(function(event)
+    {
         event.preventDefault();
-        if(player){
+        if(player)
+        {
 			vlc_seek(player.input.time - 10000);
         }
     });
 
-    $('#pausebutton').click(function(event){
+    $('#pausebutton').click(function(event)
+    {
         event.preventDefault();
-        if(player){
-
+        if(player)
+        {
 			if (player.input.state == 3)
 			{
 				$("#pausebutton").html('Resume');
@@ -119,30 +126,31 @@ $(document).ready(function(){
 			}
 
         	player.playlist.togglePause();
-
         }
     });
 
-    $('#button_next').click(function(event){
+    $('#button_next').click(function(event)
+    {
         event.preventDefault();
-        if(player){
+        if(player)
+        {
            player.playlist.next();
         }
     });
 
-    $('#button_prev').click(function(event){
+    $('#button_prev').click(function(event)
+    {
         event.preventDefault();
-        if(player){
+        if(player)
+        {
            player.playlist.prev();
         }
     });
 
-    $('#like_button').click(function(event){
-
+    $('#like_button').click(function(event)
+    {
         event.preventDefault();
-
 		media_id = $(this).attr('alt');
-
 		var ajax_url = "/ajax/like/" + media_id;
 
 		 $.ajax({
@@ -156,7 +164,8 @@ $(document).ready(function(){
 			 error: like_error
 		 });
 
-		 function like_error(){
+		 function like_error()
+         {
 			 alert('Ajax Error');
 		 }
 
@@ -191,7 +200,8 @@ $(document).ready(function(){
              $('#media_info').html("Hide");
         }
 
-        function media_info_error(){
+        function media_info_error()
+        {
              alert('Ajax Error');
          }
 
@@ -199,15 +209,20 @@ $(document).ready(function(){
     });
 
 
-	function vlc_seek(time_to_seek) {
-        if(player){
+	function vlc_seek(time_to_seek)
+    {
+        if(player)
+        {
         	player.input.time = time_to_seek;
-        } else {
+        }
+        else
+        {
 			alert("can't find player");
 		}
 	}
 
-    $('a.bookmark').click(function(event) {
+    $('a.bookmark').click(function(event)
+    {
         event.preventDefault();
         play_next_media = false;
         $('#skip_time_remaining').html('auto');
@@ -216,24 +231,33 @@ $(document).ready(function(){
 		var time_to_seek = hhmmssms2ms(time_to_seek_hh_mm_ss);
         var cursor_to_index = $('#txt_description').val().search(time_to_seek_hh_mm_ss);
         highlight_bookmarks(time_to_seek_hh_mm_ss);
-        if (cursor_to_index > 1) {
+
+        if (cursor_to_index > 1)
+        {
             cursor_to_index = cursor_to_index + time_to_seek_hh_mm_ss.length + 3;
             $('#txt_description').caretTo(cursor_to_index);
         }
-        if (player.input.state == 0 || player.input.state == 5 || player.input.state == 6) {
+
+        if (player.input.state == 0 || player.input.state == 5 || player.input.state == 6)
+        {
             player.playlist.play();
             $("#playbutton").html('Stop');
             setTimeout(function() { vlc_seek(time_to_seek); }, 200);
-        } else if (player.input.state == 4) {
+        }
+        else if (player.input.state == 4)
+        {
             player.playlist.togglePause();
             $("#pausebutton").html('Pause&nbsp;');
             vlc_seek(time_to_seek);
-        } else {
+        }
+        else
+        {
             vlc_seek(time_to_seek);
         }
     });
 
-    $('img.fav').click(function(event) {
+    $('img.fav').click(function(event)
+    {
         event.preventDefault();
         time_start = $(this).attr('alt');
         var media_id = $('span#media_id').text();
@@ -262,16 +286,19 @@ $(document).ready(function(){
             error: add_error
         });
 
-        function add_success(msg) {
+        function add_success(msg)
+        {
            // alert('VOTED');
         }
 
-        function add_error(msg) {
+        function add_error(msg)
+        {
             alert("fail");
         }
     });
 
-    $('a#thumb_link').click(function(){
+    $('a#thumb_link').click(function()
+    {
 		var current_time = $('#currentTime').text();
 		var media_id = $('span#media_id').text();
 		current_time_ms = hhmmssms2ms(current_time);
@@ -308,7 +335,8 @@ $(document).ready(function(){
 		$('#txt_description').val(new_description);
     });
 
-    $('#skip_time_remaining').click(function() {
+    $('#skip_time_remaining').click(function()
+    {
         $('#media_edit').submit();
     });
 
@@ -347,7 +375,8 @@ $(document).ready(function(){
 
 	player.addEventListener ('MediaPlayerTimeChanged', mediaTimeUpdate, false);
 
-    $('#volume_input').change(function(e){
+    $('#volume_input').change(function(e)
+    {
         media_volume = parseInt($(this).val());
         media_volume_set = false;
     });
