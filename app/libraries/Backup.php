@@ -12,19 +12,27 @@ class Backup
 
 		Cookie::queue('mysql_backup', '1', 30); /* expire in 30 minutes */
 
-		$backup_folder = base_path() . '/1/db/';
+        $time =  time();
+        $backup_folder = base_path() . DIRECTORY_SEPARATOR . '1' . DIRECTORY_SEPARATOR . 'db' . DIRECTORY_SEPARATOR;
+        $backup_file = $backup_folder . $time . '.sql';
 
-        if (!is_dir($backup_folder)) 
+        if (!is_dir($backup_folder))
         {
             die("Backup folder not found " . $backup_folder);
         }
 
-		$time =  time();
-        $backup_file = $backup_folder . $time . '.sql';
-		$backup_cmd = "/usr/bin/mysqldump -u root -pflashwebhost playlist > $backup_file";
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN')
+        {
+            $backup_cmd = "\"C:\\Program Files\\mysql\\bin\\mysqldump.exe\" -u root -pflashwebhost playlist > $backup_file";
+        }
+        else
+        {
+            $backup_cmd = "/usr/bin/mysqldump -u root -pflashwebhost playlist > $backup_file";
+        }
+
 		system($backup_cmd);
 
-        if (filesize($backup_file) < 500) 
+        if (filesize($backup_file) < 500)
         {
             die("Backkup file size too small " . $backup_cmd);
         }
