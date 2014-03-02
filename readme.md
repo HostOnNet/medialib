@@ -14,6 +14,10 @@ Install instructions at
 
 http://webhostingneeds.com/medialib
 
+## LINK TO X DRIVE
+
+mklink /D D:\www\miner\public\dn\ X:\dn\
+
 ### Contributing To Media Library
 
 **All issues and pull requests should be filed on the [hostonnet/medialib](http://github.com/hostonnet/medialib) repository.**

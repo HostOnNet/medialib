@@ -346,7 +346,9 @@ $(document).ready(function()
 
         var description = $('#txt_description').val();
         var patt1 = new RegExp(pattern);
-        var current_keyword = patt1.exec(description)[1];
+        var reg_result = patt1.exec(description);
+        if (reg_result == null) return;
+        var current_keyword = reg_result[1];
 
         var bookmarks = description.split("|");
         var bookmark = '';

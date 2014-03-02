@@ -1,13 +1,24 @@
 <?php
 
-if (is_dir("/media/truecrypt1/dn/vid/"))
+if (isset($_SERVER["WINDIR"]))
 {
-    $video_folder = '/media/truecrypt1/dn/vid/';
+    $private_media_dir = "X:\\dn\\vid\\";
+    $public_media_folder = '/home/boby/store/cbt/www/';
+}
+else
+{
+    $private_media_dir = "/media/truecrypt1/dn/vid/";
+    $public_media_folder = '/home/boby/store/cbt/www/';
+}
+
+if (is_dir($private_media_dir))
+{
+    $video_folder = $private_media_dir;
     $thumb_folder = 'dn/thumb/';
 }
 else
 {
-    $video_folder = '/home/boby/store/cbt/www/';
+    $video_folder = $public_media_folder;
     $thumb_folder = '1/thumb/';
 }
 

@@ -1,7 +1,17 @@
 <?php
 
+if (isset($_SERVER["WINDIR"]))
+{
+    $private_media_dir = "X:\\dn\\vid\\";
+    $public_media_folder = '/home/boby/store/cbt/www/';
+}
+else
+{
+    $private_media_dir = "/media/truecrypt1/dn/vid/";
+    $public_media_folder = '/home/boby/store/cbt/www/';
+}
 
-if (is_dir("/media/truecrypt1/dn/vid/"))
+if (is_dir($private_media_dir))
 {
     $db_name = "playlist";
 }
