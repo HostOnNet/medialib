@@ -56,7 +56,7 @@ class AddController extends BaseController
     {
         $file_path =  Config::get('app.video_folder') . $file_name;
 
-        $cmd = Config::get('app.ffmpeg_path') . ' -i "' . $file_path . '"';
+        $cmd = "\"" . Config::get('app.ffmpeg_path') . "\"" . ' -i "' . $file_path . '"';
 
         @exec("$cmd 2>&1", $output);
         $output_all = implode("\n", $output);
@@ -67,8 +67,8 @@ class AddController extends BaseController
         }
         else
         {
+            echo 'Failed to find media duration ' . $file_path;
             dd($output_all);
-            die('Failed to find media duration ' . $file_path);
         }
 
         return $duration;
@@ -131,7 +131,7 @@ class AddController extends BaseController
                  continue;
             }
 
-            $cmd = Config::get('app.ffmpeg_path') . "  -ss $time  -i \"$file_path\" -f image2 -frames:v 1 $thumb_path_tmp";
+            $cmd = "\"" . Config::get('app.ffmpeg_path') . "\"" . "  -ss $time  -i \"$file_path\" -f image2 -frames:v 1 $thumb_path_tmp";
             $msg .= "$cmd\n";
             flush();
             exec($cmd);
@@ -187,7 +187,7 @@ class AddController extends BaseController
         $thumb_path_tmp = $base_folder . '/' . $thumb_folder . 'tmp_' . $media_id. '.jpg';
         $thumb_url =  '/' .  $thumb_folder . '/' . $media_id . '.jpg';
 
-        $cmd = Config::get('app.ffmpeg_path') . "  -ss $time  -i \"$file_path\" -f image2 -frames:v 1 $thumb_path_tmp";
+        $cmd = "\"" . Config::get('app.ffmpeg_path') . "\"" . "  -ss $time  -i \"$file_path\" -f image2 -frames:v 1 $thumb_path_tmp";
         $msg .= "$cmd\n";
         flush();
         exec($cmd);
