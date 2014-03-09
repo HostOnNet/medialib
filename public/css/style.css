@@ -72,21 +72,19 @@ a.bookmark_hot, a.bookmark_hot:visited
 
 a.current_playlist_tag,
 a.current_playlist_tag_more {
-    font-weight: bold;
-    background-color: blueviolet;
-    color:#FFF;
+    background-color: #F3EC39;
 }
 
 a.current_playlist_tag
 {
-    background-color: blue;
+    font-weight: bold;
+    font-size: 12pt;
 }
 
 
 a.current_keyword,
 a.current_keyword_more {
-    background-color: #1B9939;
-    color: white;
+    background-color: #C3CCC5;
 }
 
 a.current_keyword {
