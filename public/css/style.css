@@ -70,24 +70,29 @@ a.bookmark_hot, a.bookmark_hot:visited
 	color: red;
 }
 
-a.current_playlist_tag,
+/*a.current_playlist_tag,
 a.current_playlist_tag_more {
     background-color: #F3EC39;
-}
+}*/
 
 a.current_playlist_tag
 {
     font-weight: bold;
-    font-size: 12pt;
+    font-size: 13pt;
 }
 
-
-a.current_keyword,
-a.current_keyword_more {
-    background-color: #C3CCC5;
-}
 
 a.current_keyword {
+
+}
+
+a.current_keyword_more {
+    background-color: #FFFEDF;
+}
+
+a.current_keyword,
+a.current_keyword:visited {
+    background-color: #F3EC39;
     font-weight: bold;
     font-size: 12pt;
 }
