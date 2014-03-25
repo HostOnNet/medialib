@@ -423,5 +423,17 @@ class Tags
         }
     }
 
+    public static function updateTagMediaLikesPerTag($media_id, $tag)
+    {
+        $media_info = Media::find($media_id);
+        $best_tag_time = Tags::getTagTime($media_info->description, $tag, $media_id);
+        $record = DB::table('media_tag_time')->where('media_id','=',$media_id)->where('time_start','=', $best_tag_time)->get(array('likes'));
+        if ($record)
+        {
+            $likes_per_tag = $record[0]->likes;
+            $tag_id = Tags::getId($tag);
+            DB::table('tag_media')->where('media_id','=', $media_id)->where('tag_id','=', $tag_id)->update(array('likes_per_tag'=>$likes_per_tag));
+        }
+    }
 
 }

@@ -127,6 +127,8 @@ class AjaxController extends BaseController
                         DB::table('tag_media')->where('media_id','=',$media_id)->where('tag_id','=',$tag_id)->decrement('likes');
                     }
 
+                    Tags::updateTagMediaLikesPerTag($media_id, $tag);
+
                 }
             }
         }
