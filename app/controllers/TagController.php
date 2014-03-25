@@ -22,7 +22,7 @@ class TagController extends BaseController {
         }
         else
         {
-            $media_list = DB::select('SELECT MA.id, MA.description FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes DESC', array($tag_id) );
+            $media_list = DB::select('SELECT MA.id, MA.description FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes_per_tag DESC', array($tag_id) );
         }
 
 		$data = array('media_list' => $media_list, 'tag_id' => $tag_id, 'tag'=>$tag);
@@ -41,7 +41,7 @@ class TagController extends BaseController {
 		DB::statement('drop table IF EXISTS `tags`');
 		DB::statement('drop table IF EXISTS `tag_media`');
 		DB::statement('CREATE TABLE `tags` (  `id` int(11) UNSIGNED NOT NULL auto_increment PRIMARY KEY, `tag` varchar(255) NOT NULL, `tag_count` int(11) NOT NULL default \'0\', UNIQUE KEY(tag)) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1');
-		DB::statement('CREATE TABLE `tag_media` ( `id` int(11) NOT NULL auto_increment, `tag_id` int(11) NOT NULL,`media_id` int(11) NOT NULL, `likes` int(11) NOT NULL DEFAULT \'0\', PRIMARY KEY  (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1');
+        DB::statement('CREATE TABLE `tag_media` ( `id` int(11) NOT NULL auto_increment, `tag_id` int(11) NOT NULL,`media_id` int(11) NOT NULL, `likes` int(11) NOT NULL DEFAULT \'0\', `likes_per_tag` int(11) NOT NULL DEFAULT \'0\', PRIMARY KEY  (`id`)) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1');
 
 		$media_all = Media::get();
 		$log = '';
@@ -79,7 +79,7 @@ class TagController extends BaseController {
 				$sql_extra = ' ORDER BY MA.likes DESC ';
 				break;
             case 'tag_likes':
-                $sql_extra = ' ORDER BY TM.likes DESC ';
+                $sql_extra = ' ORDER BY TM.likes_per_tag DESC ';
                 break;
 			default:
 				dd($order_by);
