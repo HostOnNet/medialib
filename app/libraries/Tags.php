@@ -150,6 +150,7 @@ class Tags
                         if ($tag_id)
                         {
                             DB::table('tag_media')->where('media_id','=',$media_id)->where('tag_id','=',$tag_id)->increment('likes', $time_liked->likes );
+                            Tags::updateTagMediaLikesPerTag($media_id, $tag);
                         }
                     }
 
