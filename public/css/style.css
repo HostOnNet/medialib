@@ -70,10 +70,6 @@ a.bookmark_hot, a.bookmark_hot:visited
 	color: red;
 }
 
-/*a.current_playlist_tag,
-a.current_playlist_tag_more {
-    background-color: #F3EC39;
-}*/
 
 a.current_playlist_tag
 {
@@ -81,6 +77,9 @@ a.current_playlist_tag
     font-size: 13pt;
 }
 
+a.current_playlist_tag_more {
+    background-color: #F3EC39;
+}
 
 a.current_keyword {
 

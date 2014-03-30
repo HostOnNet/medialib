@@ -31,7 +31,7 @@ Route::get('thumb/{media_id}/{time}', 'AddController@thumb_single')->where('medi
 
 Route::get('tags','TagController@index');
 Route::get('tag_rebuild', 'TagController@rebuild');
-Route::get('tag/{tag_name}', 'TagController@search')->where('tag_name','[a-z ]+');
+Route::get('tag/{tag_id}', 'TagController@search')->where('tag_id','[0-9]+');
 Route::post('tag/watch','TagController@watch');
 
 Route::get('playlists','PlaylistController@listPlaylist'); # shows all playlist

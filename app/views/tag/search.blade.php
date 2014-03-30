@@ -1,17 +1,19 @@
 <div>
 <form method="post" action="/tag/watch">
 	<input type="hidden" name="tag_name" value="<?php echo $tag ?>" />
-	<input type="submit" name="submit" value="WATCH" class="btn-custom"  />
 	<select name="order_by">
+        <option value="likes_per_tag">Tag Likes Per Tag</option>
         <option value="tag_likes">Tag Likes</option>
-        <option value="likes">Likes</option>
+        <option value="likes">Media Likes</option>
         <option value="random">RANDOM</option>
 	</select>
-    <select name="num_media">
+    <input type="hidden" name="num_media" value="100000" />
+    <!-- <select name="num_media">
         <option value="10">10</option>
         <option value="15" selected="selected">15</option>
         <option value="1000">ALL</option>
-    </select>
+    </select> -->
+    <input type="submit" name="submit" value="WATCH" class="btn btn-sm btn-success"  /> <span class="badge"><?php echo $tag ?></span>
 </form>
 </div>
 

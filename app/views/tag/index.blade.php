@@ -14,7 +14,7 @@ foreach ($tags as $tag)
 
 	$tag_count_this = $tag->tag_count;
     $percent = ($tag_count_this / $max_tag_count) * 10;
-	echo '<a href="/tag/' . $tag->tag . '" rel="' . $percent . '">' . $tag_this . '</a>  &nbsp; ';
+	echo '<a href="/tag/' . $tag->id . '" rel="' . $percent . '">' . $tag_this . '</a>  &nbsp; ';
 }
 
 ?>

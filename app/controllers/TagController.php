@@ -13,8 +13,8 @@ class TagController extends BaseController {
 
 	public function search()
     {
-		$tag = Route::input('tag_name');
-		$tag_id = Tags::getId($tag);
+		$tag_id = Route::input('tag_id');
+		$tag = Tags::getTagById($tag_id);
 
         if ($tag == 'todo')
         {
@@ -78,8 +78,11 @@ class TagController extends BaseController {
 			case 'likes':
 				$sql_extra = ' ORDER BY MA.likes DESC ';
 				break;
-            case 'tag_likes':
+            case 'likes_per_tag':
                 $sql_extra = ' ORDER BY TM.likes_per_tag DESC ';
+                break;
+            case 'tag_likes':
+                $sql_extra = ' ORDER BY TM.likes DESC ';
                 break;
 			default:
 				dd($order_by);

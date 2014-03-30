@@ -193,6 +193,14 @@ class Tags
 		return $tag_info->id;
 	}
 
+    public static function getTagById($tag_id)
+    {
+        $tag_info = DB::table('tags')->where('id','=',$tag_id)->first();
+        if (empty($tag_info)) return false;
+        return $tag_info->tag;
+    }
+
+
 	// if tag is ignored
 
 	public static function is_valid_tag($tag)
