@@ -31,7 +31,7 @@ foreach ($media_list as $media)
 
 	echo "
 		<div class=\"col-xs-6 col-md-3\">
-			<a href=\"/watch/$media_id/tag-$tag\" class=\"thumbnail\" data-placement=\"bottom\" title=\"" . Tags::get_keywords($media->description,50) . "\">
+			<a href=\"/watch/$media_id/tag-$tag_id\" class=\"thumbnail\" data-placement=\"bottom\" title=\"" . Tags::get_keywords($media->description,50) . "\">
 				<img src=$thumb_uri>
 			</a>
         </div>";
