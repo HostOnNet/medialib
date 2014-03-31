@@ -1,6 +1,7 @@
 <?php
 
 $is_playlist = (strpos($ref_page, 'playlist') !== false);
+$is_tag = (strpos($ref_page, 'tag') !== false);
 
 ?>
 
@@ -55,7 +56,7 @@ $is_playlist = (strpos($ref_page, 'playlist') !== false);
 
 
             <?php
-                if ($is_playlist)
+                if ($is_playlist || $is_tag)
                 {
                     echo '<select name="autoforward_duration">';
 
@@ -122,7 +123,7 @@ $time_start_ms = 0;
 $time_start = '';
 $skip_to_bookmark_done = 0;
 
-if ($is_playlist)
+if ($is_playlist || $is_tag)
 {
     $skip_to_bookmark = Settings::get('skip_to_bookmark');
     $autoforward_duration = Settings::get('autoforward_duration');

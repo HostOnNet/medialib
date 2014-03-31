@@ -7,6 +7,13 @@ class WatchController extends BaseController
         $media_id = Route::input('media_id');
         $ref_page = Route::input('ref_page');
 
+        if (strpos($ref_page, 'tag-') !== false)
+        {
+            $ref_parts = explode('-', $ref_page);
+            $tag_id = $ref_parts[1];
+            Settings::put('skip_to_bookmark', Tags::getTagById($tag_id));
+        }
+
 		$media = Media::find($media_id);
 		Medias::savePlaylist($media);
         $videos_in_playlist = '';
