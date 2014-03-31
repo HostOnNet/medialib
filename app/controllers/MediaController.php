@@ -111,7 +111,7 @@ class MediaController extends BaseController {
             $len_des_org = strlen($media_info->description);
             $len_des_new = strlen($description);
 
-            if ( ($len_des_org * 0.80) > $len_des_new)
+            if ( ($len_des_org * 0.80) > $len_des_new && $is_next)
             {
                 die('new description is smaller. original = ' . $len_des_org . ' new =' . $len_des_new);
             }
