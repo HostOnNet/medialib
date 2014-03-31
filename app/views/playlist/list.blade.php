@@ -1,8 +1,15 @@
 <h1>Playlists</h1>
 
-<a href=/tag/todo>todo</a> &nbsp; <a href=/playlist/0>watch</a><br>
+<a href=/playlist/0>watch</a><br />
 
 <?php
+
+$tag_id = Tags::getId('todo');
+
+if ($tag_id)
+{
+    echo '<a href=/tag/' . $tag_id . '>todo</a><br />';
+}
 
 foreach($playlists as $playlist)
 {
