@@ -1,1 +1,4 @@
 mklink /D D:\www\miner\public\dn\ X:\dn\
+
+cd /home/boby/www/miner/public
+ln -s /media/truecrypt1/dn
