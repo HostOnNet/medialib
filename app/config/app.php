@@ -4,11 +4,13 @@ if (isset($_SERVER["WINDIR"]))
 {
     $private_media_dir = "X:\\dn\\vid\\";
     $public_media_folder = '/home/boby/store/cbt/www/';
+    $ffmpeg_path = 'C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe';
 }
 else
 {
     $private_media_dir = "/media/truecrypt1/dn/vid/";
     $public_media_folder = '/home/boby/store/cbt/www/';
+    $ffmpeg_path = '/home/boby/bin/ffmpeg';
 }
 
 if (is_dir($private_media_dir))
@@ -51,7 +53,7 @@ return array(
 	'url' => 'http://xyl',
     'video_folder' => $video_folder,
     'thumb_folder' => $thumb_folder,
-    'ffmpeg_path' => 'C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe',
+    'ffmpeg_path' => $ffmpeg_path, 
 
 	/*
 	|--------------------------------------------------------------------------
