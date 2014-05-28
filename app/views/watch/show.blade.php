@@ -187,15 +187,22 @@ if ($time_start_ms > 10 && $autoforward) {
 <script type="text/javascript">
 jQuery(function () {
 
-    setTimeout(function() { player.playlist.play(); }, 100);
+    var gotEvent = false;
+
+    player.playlist.play();
 
 	$("#playbutton").html('Stop');
 
 	function seekOnStart(event) {
-		setTimeout(function() { player.input.time = <?php echo $time_start_ms; ?>; }, 400);
+        gotEvent = true;
+		setTimeout(function() { player.input.time = <?php echo $time_start_ms; ?>;  }, 400);
     }
+
     end_time = <?php echo $time_end_ms; ?>;
 	player.addEventListener('MediaPlayerOpening', seekOnStart, false);
+
+    // check if we got event, if not reload
+    setTimeout(function() {  if (gotEvent==false) location.reload(); }, 200);
 
     $('#skip_time_more').html('more');
 
