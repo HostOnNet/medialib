@@ -22,7 +22,7 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 
 	<div id="watch_controls">
         <div class="form-inline">
-        <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" size=3 min=20 max=200 class="form-control">
+        <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" min=20 max=200 class="form-control" style="width:90px">
         <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>" class="form-control">
 
 
