@@ -13,7 +13,7 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 <p><?php echo $media->file_name; ?> [<span id="media_id"><?php echo $media->id; ?></span>] [Likes: <?php echo $media->likes ?>]  [Views: <?php echo $media->views; ?>] <?php if ($ref_page == 'random-search') echo ' ' . Playlist::getTotalVideos(Playlist::getId('WATCH')); ?></p>
 
 <div id="watch_col_form">
-	<form method="post" action="/media/save" id="media_edit">
+	<form method="post" action="/media/save" id="media_edit" class="form-horizontal">
 	<input type="hidden" name="media_id" value="<?php echo $media->id; ?>"></input>
 	<input type="hidden" name="ref_page" value="<?php echo $ref_page; ?>"></input>
 
@@ -21,9 +21,12 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 	<textarea name="description" id="txt_description" rows="5" cols="70"><?php echo Tags::sort_bookmark($media->description); ?></textarea>
 
 	<div id="watch_controls">
-        <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" size=3 min=20 max=200>
-        <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>">
-        <select name="view_again">
+        <div class="form-inline">
+        <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" size=3 min=20 max=200 class="form-control">
+        <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>" class="form-control">
+
+
+        <select name="view_again" class="form-control">
 
             <?php
                 $view_days = array(1, 5, 10, 15, 20, 30, 60);
@@ -58,7 +61,7 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
             <?php
                 if ($is_playlist || $is_tag)
                 {
-                    echo '<select name="autoforward_duration">';
+                    echo '<select name="autoforward_duration" class="form-control">';
 
                     $durations = array(0, 20, 25, 30, 45, 60, 90, 120);
                     $autoforward_duration = Settings::get('autoforward_duration');
@@ -92,12 +95,13 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 
            ?>
 
-
           <?php echo $videos_in_playlist ; ?>
 
+            <input type="submit" name="submit_back" value="Save" class="btn btn-default"></input>
+            <input type="submit" name="submit_next" value="Next >>" class="btn btn-default"></input>
 
-        <input type="submit" name="submit_back" value="Save" class="btn btn-success"></input>
-        <input type="submit" name="submit_next" value="Next >>" class="btn btn-success"></input>
+        </div>
+
 	</div>
 
 	</forum>
@@ -182,7 +186,9 @@ if ($time_start_ms > 10 && $autoforward) {
 
 <script type="text/javascript">
 jQuery(function () {
-	player.playlist.play();
+
+    setTimeout(function() { player.playlist.play(); }, 100);
+
 	$("#playbutton").html('Stop');
 
 	function seekOnStart(event) {
