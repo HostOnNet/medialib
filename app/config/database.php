@@ -4,14 +4,20 @@ if (isset($_SERVER["WINDIR"]))
 {
     $private_media_dir = "X:\\dn\\vid\\";
     $public_media_folder = '/home/boby/store/cbt/www/';
-    $db_path = "X:\\dn\\db\\xyl";
 }
 else
 {
     $private_media_dir = "/media/truecrypt1/dn/vid/";
     $public_media_folder = '/home/boby/store/cbt/www/';
-    $db_path = "/media/truecrypt1/dn/db/xyl";
+
 }
+
+if (is_dir($private_media_dir)) {
+    $dbName = 'xyl';
+} else {
+    $dbName = 'db2';
+}
+
 
 return array(
 
@@ -39,7 +45,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sqlite',
+	'default' => 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -61,14 +67,14 @@ return array(
 
 		'sqlite' => array(
 			'driver'   => 'sqlite',
-			'database' =>  $db_path,
+			'database' =>  'db.sqlite',
 			'prefix'   => '',
 		),
 
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  =>  'none',
+			'database'  =>  $dbName,
 			'username'  => 'root',
 			'password'  => 'flashwebhost',
 			'charset'   => 'utf8',
