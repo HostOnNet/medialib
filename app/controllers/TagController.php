@@ -38,6 +38,9 @@ class TagController extends BaseController {
 	}
 
 	public function rebuild() {
+
+        ini_set('max_execution_time', 60000);
+
 		DB::statement('drop table IF EXISTS `tags`');
 		DB::statement('drop table IF EXISTS `tag_media`');
 		DB::statement('CREATE TABLE `tags` (  `id` int(11) UNSIGNED NOT NULL auto_increment PRIMARY KEY, `tag` varchar(255) NOT NULL, `tag_count` int(11) NOT NULL default \'0\', UNIQUE KEY(tag)) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1');
