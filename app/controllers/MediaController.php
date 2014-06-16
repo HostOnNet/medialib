@@ -53,55 +53,37 @@ class MediaController extends BaseController {
 
         $description = trim($description);
 
-        if (empty($media_info))
-        {
+        if (empty($media_info)) {
             die('Media not found with id = ' + $media_info->id);
         }
 
         $autoforward_duration = Input::get('autoforward_duration');
 
-        if (isset($autoforward_duration))
-        {
+        if (isset($autoforward_duration)) {
             Settings::put('autoforward_duration', $autoforward_duration);
         }
 
-
-        if (strpos($description, 'todo') === false)
-        {
-            if ($is_next)
-            {
+        if (strpos($description, 'todo') === false) {
+            $dataUpdate = array();
+            if ($is_next) {
                 $new_views = $media_info->views + 1;
                 $view_again_days = Input::get('view_again');
                 $new_likes = $media_info->likes;
                 $view_again = strtotime("+$view_again_days days");
-
-                Media::where('id', '=', $media_id)->update(
-                    array
-                    (
-                        'view_time' => time(),
-                        'views' => $new_views,
-                        'view_again' => $view_again,
-                        'view_again_days' => $view_again_days
-                    )
-                );
-
-            }
-            else if ($is_auto)
-            {
+                $dataUpdate['view_time'] = time();
+                $dataUpdate['views'] = $new_views;
+                $dataUpdate['view_again'] = $view_again;
+                $dataUpdate['view_again_days'] = $view_again_days;
+            } else if ($is_auto) {
                 $new_views = $media_info->views + 1;
-  //              $view_again_days = Input::get('view_again');
-                //$view_again = strtotime("+$view_again_days days");
-                $view_again = $media_info->view_again + (3600 * 12); // Auto medias become vewable after 12 hours
-
-                Media::where('id', '=', $media_id)->update(
-                    array
-                    (
-                        'view_time' => time(),
-                        'views' => $new_views,
-                        'view_again' => $view_again
-//                        'view_again_days' => $view_again_days
-                    )
-                );
+                $view_again = $media_info->view_again + (3600 * 12);
+                $dataUpdate['view_time'] = time();
+                $dataUpdate['views'] = $new_views;
+                $dataUpdate['view_again'] = $view_again;
+                $dataUpdate['view_again_days'] = $view_again_days;
+            }
+            if (!empty($dataUpdate)) {
+                Media::where('id', '=', $media_id)->update($dataUpdate);
             }
         }
 
