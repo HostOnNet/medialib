@@ -65,107 +65,70 @@ class MediaController extends BaseController {
 
         if (strpos($description, 'todo') === false) {
             $dataUpdate = array();
+            $dataUpdate['view_time'] = time();
+            $dataUpdate['views'] = $media_info->views + 1;
             if ($is_next) {
-                $new_views = $media_info->views + 1;
                 $view_again_days = Input::get('view_again');
-                $new_likes = $media_info->likes;
-                $view_again = strtotime("+$view_again_days days");
-                $dataUpdate['view_time'] = time();
-                $dataUpdate['views'] = $new_views;
-                $dataUpdate['view_again'] = $view_again;
+                $dataUpdate['view_again'] = strtotime("+$view_again_days days");
                 $dataUpdate['view_again_days'] = $view_again_days;
             } else if ($is_auto) {
-                $new_views = $media_info->views + 1;
-                $view_again = $media_info->view_again + (3600 * 12);
-                $dataUpdate['view_time'] = time();
-                $dataUpdate['views'] = $new_views;
-                $dataUpdate['view_again'] = $view_again;
-                $dataUpdate['view_again_days'] = $view_again_days;
+                $dataUpdate['view_again'] = $media_info->view_again + (3600 * 12);
             }
-            if (!empty($dataUpdate)) {
+            if ($is_next || $is_auto) {
                 Media::where('id', '=', $media_id)->update($dataUpdate);
             }
         }
 
-        if ( $is_save || $is_next )
-        {
-
+        if ( $is_save || $is_next ) {
             $len_des_org = strlen($media_info->description);
             $len_des_new = strlen($description);
-
-            if ( ($len_des_org * 0.80) > $len_des_new && $is_next)
-            {
+            if ( ($len_des_org * 0.80) > $len_des_new && $is_next) {
                 die('new description is smaller. original = ' . $len_des_org . ' new =' . $len_des_new);
             }
-
             $description = Tags::sort_bookmark($description);
             $description_original = $media_info->description;
-
-            if ($description_original != $description)
-            {
+            if ($description_original != $description) {
                 Tags::del($description_original, $media_id);
                 Tags::add($description, $media_id);
-                $affected = Media::where('id', '=', $media_id)->update(array('description' => "$description"));
+                Media::where('id', '=', $media_id)->update(array('description' => "$description"));
             }
-
             $skip_to_bookmark = trim(Input::get('skip_to_bookmark'));
-
-            if (Settings::get('skip_to_bookmark') != $skip_to_bookmark)
-            {
+            if (Settings::get('skip_to_bookmark') != $skip_to_bookmark) {
                 Settings::put('skip_to_bookmark', $skip_to_bookmark);
             }
-
             Media::where('id', '=', $media_id)->update(array('volume' => "$volume"));
         }
 
-        if ($is_save)
-        {
+        if ($is_save) {
             $url_redirect =  '/watch/' . $media_id . '/' . $_POST['ref_page'];
-        }
-        else
-        {
-            if (strpos($_POST['ref_page'],'-'))
-            {
+        } else {
+            if (strpos($_POST['ref_page'],'-')) {
                 $ref_page_parts = explode('-',$_POST['ref_page']);
                 $action_name = $ref_page_parts[0];
                 $action_value = $ref_page_parts[1];
 
-                if ($action_name == 'media')
-                {
+                if ($action_name == 'media') {
                     $url_redirect =  '/media?page=' . $action_value;
-                }
-                else if ($action_name == 'search')
-                {
+                } else if ($action_name == 'search') {
                     $url_redirect =  '/';
-                }
-                else if ($action_name == 'tag')
-                {
+                } else if ($action_name == 'tag') {
                     $url_redirect =  '/tag/' . $action_value;
-                }
-                else if ($action_name == 'playlist')
-                {
-                    if (strpos($action_value, 'x'))
-                    {
+                } else if ($action_name == 'playlist') {
+                    if (strpos($action_value, 'x')) {
                         $playlist_parts = explode('x', $action_value);
                         $playlist_id = $playlist_parts[0];
                         $pm_id = $playlist_parts[1];
-                    }
-                    else
-                    {
+                    } else {
                         $playlist_id = $action_value;
                         $pm_id = 0;
                     }
-
                     Playlist::deleteFromPlaylist($media_id,$playlist_id, $pm_id);
                     $url_redirect =  '/playlist/watch/' . $playlist_id;
                 }
-            }
-            else
-            {
+            } else {
                 dd($_POST['ref_page']);
             }
         }
-
         Backup::db();
         return Redirect::to($url_redirect);
     }
