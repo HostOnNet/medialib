@@ -67,16 +67,8 @@ class MediaController extends BaseController {
             $dataUpdate = array();
             $dataUpdate['view_time'] = time();
             $dataUpdate['views'] = $media_info->views + 1;
-            if ($is_next) {
-                $view_again_days = Input::get('view_again');
-                $dataUpdate['view_again'] = strtotime("+$view_again_days days");
-                $dataUpdate['view_again_days'] = $view_again_days;
-            } else if ($is_auto) {
-                $dataUpdate['view_again'] = $media_info->view_again + (3600 * 12);
-            }
-            if ($is_next || $is_auto) {
-                Media::where('id', '=', $media_id)->update($dataUpdate);
-            }
+            $dataUpdate['view_again'] = Media::getViewAgain($media_info->views, $media_info->likes);
+            Media::where('id', '=', $media_id)->update($dataUpdate);
         }
 
         if ( $is_save || $is_next ) {
