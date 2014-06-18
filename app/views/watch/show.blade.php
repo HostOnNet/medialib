@@ -14,96 +14,40 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 
 <div id="watch_col_form">
 	<form method="post" action="/media/save" id="media_edit" class="form-horizontal">
-	<input type="hidden" name="media_id" value="<?php echo $media->id; ?>"></input>
-	<input type="hidden" name="ref_page" value="<?php echo $ref_page; ?>"></input>
+        <input type="hidden" name="media_id" value="<?php echo $media->id; ?>"></input>
+        <input type="hidden" name="ref_page" value="<?php echo $ref_page; ?>"></input>
+        <textarea name="description" id="txt_description" rows="5" cols="70"><?php echo Tags::sort_bookmark($media->description); ?></textarea>
+        <div id="watch_controls">
+            <div class="form-inline">
+                <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" min=20 max=200 class="form-control" style="width:90px">
+                <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>" class="form-control">
+                <?php
+                    if ($is_playlist || $is_tag) {
+                        echo '<select name="autoforward_duration" class="form-control">';
+                        $durations = array(0, 20, 25, 30, 45, 60, 90, 120);
+                        $autoforward_duration = Settings::get('autoforward_duration');
+                        foreach ($durations as $duration_1) {
+                            if ($duration_1 == $autoforward_duration) {
+                                $selected = "selected";
+                            } else {
+                                $selected = '';
+                            }
 
-
-	<textarea name="description" id="txt_description" rows="5" cols="70"><?php echo Tags::sort_bookmark($media->description); ?></textarea>
-
-	<div id="watch_controls">
-        <div class="form-inline">
-        <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" min=20 max=200 class="form-control" style="width:90px">
-        <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>" class="form-control">
-
-
-        <select name="view_again" class="form-control">
-
-            <?php
-                $view_days = array(1, 5, 10, 15, 20, 30, 60);
-
-                if ($media->view_again_days == 0)
-                {
-                    $view_again_days = 1;
-                }
-                else
-                {
-                    $view_again_days = $media->view_again_days;
-                }
-
-                foreach ($view_days as $day)
-                {
-                    if ($day == $view_again_days)
-                    {
-                        $selected = "selected";
+                            if ($duration_1 == 0) {
+                                echo "<option value=\"$duration_1\" $selected>No Auto</option>";
+                            } else {
+                                echo "<option value=\"$duration_1\" $selected>$duration_1 Sec</option>";
+                            }
+                        }
+                        echo '</select>';
                     }
-                    else
-                    {
-                        $selected = '';
-                    }
+                ?>
 
-                    echo "<option value=\"$day\" $selected>$day Days</option>";
-                }
-            ?>
-          </select>
-
-
-
-            <?php
-                if ($is_playlist || $is_tag)
-                {
-                    echo '<select name="autoforward_duration" class="form-control">';
-
-                    $durations = array(0, 20, 25, 30, 45, 60, 90, 120);
-                    $autoforward_duration = Settings::get('autoforward_duration');
-
-                    foreach ($durations as $duration_1)
-                    {
-                        if ($duration_1 == $autoforward_duration)
-                        {
-                            $selected = "selected";
-                        }
-                        else
-                        {
-                            $selected = '';
-                        }
-
-                        if ($duration_1 == 0)
-                        {
-                            echo "<option value=\"$duration_1\" $selected>No Auto</option>";
-                        }
-                        else
-                        {
-                            echo "<option value=\"$duration_1\" $selected>$duration_1 Sec</option>";
-                        }
-
-                    }
-
-
-                    echo '</select>';
-                }
-
-
-           ?>
-
-          <?php echo $videos_in_playlist ; ?>
-
-            <input type="submit" name="submit_back" value="Save" class="btn btn-default"></input>
-            <input type="submit" name="submit_next" value="Next >>" class="btn btn-default"></input>
-
+                <?php echo $videos_in_playlist ; ?>
+                <input type="submit" name="submit_back" value="Save" class="btn btn-default"></input>
+                <input type="submit" name="submit_next" value="Next >>" class="btn btn-default"></input>
+            </div>
         </div>
-
-	</div>
-
 	</forum>
 </div>
 
