@@ -11,11 +11,11 @@ class SettingsController extends BaseController
 
     public function save()
     {
-        $autoforward_duration = (int) Input::get('autoforward_duration');
+        $autoForwardDuration = (int) Input::get('autoForwardDuration');
         $skip_to_bookmark = Input::get('skip_to_bookmark');
 
-        Settings::put('autoforward_duration',$autoforward_duration);
-        Settings::put('skip_to_bookmark',$skip_to_bookmark);
+        Settings::put('autoForwardDuration', $autoForwardDuration);
+        Settings::put('skip_to_bookmark', $skip_to_bookmark);
         return Redirect::to('settings');
     }
 

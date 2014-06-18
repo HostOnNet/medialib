@@ -23,11 +23,11 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
                 <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>" class="form-control">
                 <?php
                     if ($is_playlist || $is_tag) {
-                        echo '<select name="autoforward_duration" class="form-control">';
+                        echo '<select name="autoForwardDuration" class="form-control">';
                         $durations = array(0, 20, 25, 30, 45, 60, 90, 120);
-                        $autoforward_duration = Settings::get('autoforward_duration');
+                        $autoForwardDuration = Settings::get('autoForwardDuration');
                         foreach ($durations as $duration_1) {
-                            if ($duration_1 == $autoforward_duration) {
+                            if ($duration_1 == $autoForwardDuration) {
                                 $selected = "selected";
                             } else {
                                 $selected = '';
@@ -74,8 +74,8 @@ $skip_to_bookmark_done = 0;
 if ($is_playlist || $is_tag)
 {
     $skip_to_bookmark = Settings::get('skip_to_bookmark');
-    $autoforward_duration = Settings::get('autoforward_duration');
-    $autoforward =  ($autoforward_duration > 0) ? 1 : 0;
+    $autoForwardDuration = Settings::get('autoForwardDuration');
+    $autoforward =  ($autoForwardDuration > 0) ? 1 : 0;
 
     if (strlen($skip_to_bookmark) > 2)
     {
@@ -99,7 +99,7 @@ if ($is_playlist || $is_tag)
     }
 
     $time_start_ms = Time::hmsms2ms($time_start);
-    $time_end_ms = $time_start_ms + ($autoforward_duration * 1000);
+    $time_end_ms = $time_start_ms + ($autoForwardDuration * 1000);
 
 }
 
