@@ -111,6 +111,9 @@ echo "<div>" . Tags::get_bookmarks($media->description, $media->id) . "</div>";
 
 <div id="media_info_display"></div>
 
+vlc_seek(hhmmssms2ms("000:38:49.702"));
+
+
 <script type="text/javascript">
 jQuery(function () {
 	var ac_tags;

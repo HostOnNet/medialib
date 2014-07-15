@@ -66,6 +66,15 @@ function trim (str)
     return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 }
 
+function vlc_seek(time_to_seek)
+{
+    if(player) {
+        player.input.time = time_to_seek;
+    } else {
+        alert("can't find player");
+    }
+}
+
 $(document).ready(function()
 {
 
@@ -207,19 +216,6 @@ $(document).ready(function()
 
 
     });
-
-
-	function vlc_seek(time_to_seek)
-    {
-        if(player)
-        {
-        	player.input.time = time_to_seek;
-        }
-        else
-        {
-			alert("can't find player");
-		}
-	}
 
     $('a.bookmark').click(function(event)
     {
