@@ -2,7 +2,8 @@
 
 class TagController extends BaseController {
 
-	public function index() {
+	public function index()
+    {
 		$tags = DB::table('tags')->orderBy('tag')->where('tag_count','>',1)->get();
 		$max = DB::table('tags')->where('tag','!=','todo')->orderBy('tag_count','desc')->first();
 		$max_tag_count = $max->tag_count;
@@ -53,7 +54,6 @@ class TagController extends BaseController {
 			$media_id = $media->id;
 			$description = trim($media->description);
 			if (empty($description)) continue;
-
 			$log .= "Adding media id = $media_id, kw= $description<br>";
 			Tags::add($description, $media_id);
 		}
@@ -65,38 +65,10 @@ class TagController extends BaseController {
 
 	public function watch() {
 		$tag_name  = Input::get('tag_name');
-		$num_media = Input::get('num_media');
-		$order_by = Input::get('order_by');
 		$playlist_id = Playlist::getId($tag_name);
-
 		$tag_id = Tags::getId($tag_name);
 
-		$sql_extra = '';
-
-		switch ($order_by)
-        {
-			case 'random':
-				$sql_extra = ' ORDER BY RAND() ';
-				break;
-			case 'likes':
-				$sql_extra = ' ORDER BY MA.likes DESC ';
-				break;
-            case 'likes_per_tag':
-                $sql_extra = ' ORDER BY TM.likes_per_tag DESC ';
-                break;
-            case 'tag_likes':
-                $sql_extra = ' ORDER BY TM.likes DESC ';
-                break;
-			default:
-				dd($order_by);
-				break;
-		}
-
-		if ($num_media > 0) {
-			$sql_extra = $sql_extra . ' LIMIT ' . $num_media;
-		}
-
-		$media_list = DB::select("SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id $sql_extra", array($tag_id));
+		$media_list = DB::select("SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes_per_tag DESC", array($tag_id));
 
 		if (!$playlist_id) {
 			$playlist_id = Playlist::add($tag_name);
