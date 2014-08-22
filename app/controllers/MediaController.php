@@ -40,6 +40,10 @@ class MediaController extends BaseController {
             die('Media not found with id = ' + $media_info->id);
         }
 
+        if (is_int($volume) && ($volume > 20) && ($volume != $media_info->volume) ) {
+            Media::where('id', '=', $media_id)->update(['volume' => $volume]);
+        }
+
         $autoForwardDuration = Input::get('autoForwardDuration');
 
         if (isset($autoForwardDuration)) {
@@ -71,7 +75,6 @@ class MediaController extends BaseController {
             if (Settings::get('skip_to_bookmark') != $skip_to_bookmark) {
                 Settings::put('skip_to_bookmark', $skip_to_bookmark);
             }
-            Media::where('id', '=', $media_id)->update(array('volume' => "$volume"));
         }
 
         if ($is_save) {
