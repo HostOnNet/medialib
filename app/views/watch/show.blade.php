@@ -24,7 +24,7 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
                 <?php
                     if ($is_playlist || $is_tag) {
                         echo '<select name="autoForwardDuration" class="form-control">';
-                        $durations = array(0, 20, 25, 30, 45, 60, 90, 120);
+                        $durations = array(0, 10, 20, 25, 30, 45, 60, 90, 120);
                         $autoForwardDuration = Settings::get('autoForwardDuration');
                         foreach ($durations as $duration_1) {
                             if ($duration_1 == $autoForwardDuration) {
@@ -151,7 +151,7 @@ jQuery(function () {
     $('#skip_time_more').html('more');
 
     $('#skip_time_more').click(function() {
-        end_time = end_time + 30000;
+        end_time = end_time + <?php echo $autoForwardDuration * 1000; ?>;
     });
 
 });

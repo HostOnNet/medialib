@@ -32,7 +32,6 @@ class MediaController extends BaseController {
         $volume = Input::get('volume');
         $media_info = Media::find($media_id);
         $is_save = isset($_POST['submit_back']);
-        $is_next = isset($_POST['submit_next']);
 
         $description = trim($description);
 
@@ -58,10 +57,10 @@ class MediaController extends BaseController {
             Media::where('id', '=', $media_id)->update($dataUpdate);
         }
 
-        if ( $is_save || $is_next ) {
+        if ($is_save) {
             $len_des_org = strlen($media_info->description);
             $len_des_new = strlen($description);
-            if ( ($len_des_org * 0.80) > $len_des_new && $is_next) {
+            if ( ($len_des_org * 0.80) > $len_des_new) {
                 die('new description is smaller. original = ' . $len_des_org . ' new =' . $len_des_new);
             }
             $description = Tags::sort_bookmark($description);
@@ -75,9 +74,6 @@ class MediaController extends BaseController {
             if (Settings::get('skip_to_bookmark') != $skip_to_bookmark) {
                 Settings::put('skip_to_bookmark', $skip_to_bookmark);
             }
-        }
-
-        if ($is_save) {
             $url_redirect =  '/watch/' . $media_id . '/' . $_POST['ref_page'];
         } else {
             if (strpos($_POST['ref_page'],'-')) {
