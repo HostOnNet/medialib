@@ -331,10 +331,12 @@ $(document).ready(function()
 		$('#txt_description').val(new_description);
     });
 
+    /*
     $('#skip_time_remaining').click(function()
     {
         $('#media_edit').submit();
     });
+    */
 
     function highlight_bookmarks(time_to_seek_hh_mm_ss)
     {

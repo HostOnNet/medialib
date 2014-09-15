@@ -3,6 +3,12 @@
         <form method="post" action="/tag/watch">
             <input type="hidden" name="tag_name" value="<?php echo $tag ?>" />
             <input type="submit" name="submit" value="WATCH" class="btn btn-sm btn-success"  />
+            <select name="num_media">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="40">40</option>
+                <option value="1000">ALL</option>
+            </select>
             <span class="badge badge-success"><?php echo $tag ?></span>
         </form>
     </div>

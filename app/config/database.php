@@ -7,7 +7,7 @@ if (isset($_SERVER["WINDIR"]))
 }
 else
 {
-    $private_media_dir = "/media/truecrypt1/dn/vid/";
+    $private_media_dir = "/mnt/x/dn/vid/";
     $public_media_folder = '/home/boby/store/cbt/www/';
 
 }

@@ -8,7 +8,7 @@ if (isset($_SERVER["WINDIR"]))
 }
 else
 {
-    $private_media_dir = "/media/truecrypt1/dn/vid/";
+    $private_media_dir = "/mnt/x/dn/vid/";
     $public_media_folder = '/home/boby/store/cbt/www/';
     $ffmpeg_path = '/home/boby/bin/ffmpeg';
 }
@@ -53,7 +53,7 @@ return array(
 	'url' => 'http://xyl',
     'video_folder' => $video_folder,
     'thumb_folder' => $thumb_folder,
-    'ffmpeg_path' => $ffmpeg_path, 
+    'ffmpeg_path' => $ffmpeg_path,
 
 	/*
 	|--------------------------------------------------------------------------

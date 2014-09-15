@@ -65,10 +65,11 @@ class TagController extends BaseController {
 
 	public function watch() {
 		$tag_name  = Input::get('tag_name');
+        $num_media  = Input::get('num_media');
 		$playlist_id = Playlist::getId($tag_name);
 		$tag_id = Tags::getId($tag_name);
 
-		$media_list = DB::select("SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes_per_tag DESC", array($tag_id));
+		$media_list = DB::select("SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes_per_tag DESC LIMIT ?", array($tag_id, $num_media));
 
 		if (!$playlist_id) {
 			$playlist_id = Playlist::add($tag_name);
