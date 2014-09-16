@@ -10,13 +10,19 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 <script language="JavaScript" type="text/javascript" src="/js/jquery.autocomplete.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/textarea_caret.js"></script>
 
-<p><?php echo $media->file_name; ?> [<span id="media_id"><?php echo $media->id; ?></span>] [Likes: <?php echo $media->likes ?>]  [Views: <?php echo $media->views; ?>] <?php if ($ref_page == 'random-search') echo ' ' . Playlist::getTotalVideos(Playlist::getId('WATCH')); ?></p>
+<p>
+    <?php echo $media->file_name; ?> [<span id="media_id"><?php echo $media->id; ?></span>]
+    [Likes: <?php echo $media->likes ?>]
+    [Views: <?php echo $media->views; ?>]
+    <?php if ($ref_page == 'random-search') echo ' ' . Playlist::getTotalVideos(Playlist::getId('WATCH')); ?>
+    <span id="edit_button" class="btn btn-success btn-sm">Edit</span>
+</p>
 
 <div id="watch_col_form">
 	<form method="post" action="/media/save" id="media_edit" class="form-horizontal">
         <input type="hidden" name="media_id" value="<?php echo $media->id; ?>"></input>
         <input type="hidden" name="ref_page" value="<?php echo $ref_page; ?>"></input>
-        <textarea name="description" id="txt_description" rows="5" cols="70"><?php echo Tags::sort_bookmark($media->description); ?></textarea>
+        <textarea name="description" id="txt_description" rows="5" cols="70" disabled><?php echo Tags::sort_bookmark($media->description); ?></textarea>
         <div id="watch_controls">
             <div class="form-inline">
                 <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" min=20 max=200 class="form-control" style="width:90px">

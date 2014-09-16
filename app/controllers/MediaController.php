@@ -29,10 +29,9 @@ class MediaController extends BaseController {
     {
         $media_id = (int) Input::get('media_id');
         $description = Input::get('description');
+
         $volume = Input::get('volume');
         $media_info = Media::find($media_id);
-
-        $description = trim($description);
 
         if (empty($media_info)) {
             die('Media not found with id = ' + $media_info->id);
@@ -50,33 +49,39 @@ class MediaController extends BaseController {
 
         $redirect_back = 0;
 
-        if (strpos($description, 'todo') === false) {
-            $dataUpdate = array();
-            $dataUpdate['view_time'] = time();
-            $dataUpdate['views'] = $media_info->views + 1;
-            $dataUpdate['view_again'] = Media::getViewAgain($media_info->views, $media_info->likes);
-            Media::where('id', '=', $media_id)->update($dataUpdate);
-        } else {
-            $redirect_back = 1;
-        }
+        if ($description != null) {
 
-        // update description
+            $description = trim($description);
 
-        $len_des_org = strlen($media_info->description);
-        $len_des_new = strlen($description);
+            if (strpos($description, 'todo') === false) {
+                $dataUpdate = array();
+                $dataUpdate['view_time'] = time();
+                $dataUpdate['views'] = $media_info->views + 1;
+                $dataUpdate['view_again'] = Media::getViewAgain($media_info->views, $media_info->likes);
+                Media::where('id', '=', $media_id)->update($dataUpdate);
+            } else {
+                $redirect_back = 1;
+            }
 
-        if ( ($len_des_org * 0.80) > $len_des_new) {
-            die('new description is smaller. original = ' . $len_des_org . ' new =' . $len_des_new);
-        }
+            // update description
 
-        $description = Tags::sort_bookmark($description);
-        $description_original = $media_info->description;
+            $len_des_org = strlen($media_info->description);
+            $len_des_new = strlen($description);
 
-        if ($description_original != $description) {
-            Tags::del($description_original, $media_id);
-            Tags::add($description, $media_id);
-            Media::where('id', '=', $media_id)->update(array('description' => "$description"));
-            $redirect_back = 1;
+            if ( ($len_des_org * 0.80) > $len_des_new) {
+                die('new description is smaller. original = ' . $len_des_org . ' new =' . $len_des_new);
+            }
+
+            $description = Tags::sort_bookmark($description);
+            $description_original = $media_info->description;
+
+            if ($description_original != $description) {
+                Tags::del($description_original, $media_id);
+                Tags::add($description, $media_id);
+                Media::where('id', '=', $media_id)->update(array('description' => "$description"));
+                $redirect_back = 1;
+            }
+
         }
 
         $skip_to_bookmark = trim(Input::get('skip_to_bookmark'));

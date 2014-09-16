@@ -380,5 +380,9 @@ $(document).ready(function()
         media_volume = parseInt($(this).val());
         media_volume_set = false;
     });
+
+    $('#edit_button').click(function() {
+        $("#txt_description").prop('disabled', false);
+    });
 }
 );
