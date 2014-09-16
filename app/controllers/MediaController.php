@@ -30,14 +30,14 @@ class MediaController extends BaseController {
         $media_id = (int) Input::get('media_id');
         $description = Input::get('description');
 
-        $volume = Input::get('volume');
+        $volume = (int) Input::get('volume');
         $media_info = Media::find($media_id);
 
         if (empty($media_info)) {
             die('Media not found with id = ' + $media_info->id);
         }
 
-        if (is_int($volume) && ($volume > 20) && ($volume != $media_info->volume) ) {
+        if (($volume > 20) && ($volume != $media_info->volume) ) {
             Media::where('id', '=', $media_id)->update(['volume' => $volume]);
         }
 

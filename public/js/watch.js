@@ -347,6 +347,7 @@ $(document).ready(function()
         var reg_result = patt1.exec(description);
         if (reg_result == null) return;
         var current_keyword = reg_result[1];
+        current_keyword = $.trim(current_keyword);
 
         var bookmarks = description.split("|");
         var bookmark = '';
@@ -358,10 +359,14 @@ $(document).ready(function()
             bookmark = bookmarks[i];
             var bookmark_parts = bookmark.split("=");
             var bookmark_time = $.trim(bookmark_parts[0]);
+            var bookmark_keywords = $.trim(bookmark_parts[1]);
+
             $("a[alt='" + bookmark_time + "']").removeClass("current_keyword current_keyword_more");
 
-            if (bookmark.indexOf(current_keyword) != -1)
+            if (bookmark_keywords == current_keyword)
             {
+                console.log(bookmark_keywords);
+
                 $("a[alt='" + bookmark_time + "']").addClass("current_keyword_more");
 
                 if (time_to_seek_hh_mm_ss == bookmark_time)
