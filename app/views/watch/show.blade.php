@@ -44,8 +44,7 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
                 ?>
 
                 <?php echo $videos_in_playlist ; ?>
-                <input type="submit" name="submit_back" value="Save" class="btn btn-default"></input>
-                <input type="submit" name="submit_next" value="Next >>" class="btn btn-default"></input>
+                <input type="submit" name="submit" value="Next >>" class="btn btn-default"></input>
             </div>
         </div>
 	</forum>

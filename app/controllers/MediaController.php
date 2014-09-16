@@ -31,7 +31,6 @@ class MediaController extends BaseController {
         $description = Input::get('description');
         $volume = Input::get('volume');
         $media_info = Media::find($media_id);
-        $is_save = isset($_POST['submit_back']);
 
         $description = trim($description);
 
@@ -49,31 +48,43 @@ class MediaController extends BaseController {
             Settings::put('autoForwardDuration', $autoForwardDuration);
         }
 
+        $redirect_back = 0;
+
         if (strpos($description, 'todo') === false) {
             $dataUpdate = array();
             $dataUpdate['view_time'] = time();
             $dataUpdate['views'] = $media_info->views + 1;
             $dataUpdate['view_again'] = Media::getViewAgain($media_info->views, $media_info->likes);
             Media::where('id', '=', $media_id)->update($dataUpdate);
+        } else {
+            $redirect_back = 1;
         }
 
-        if ($is_save) {
-            $len_des_org = strlen($media_info->description);
-            $len_des_new = strlen($description);
-            if ( ($len_des_org * 0.80) > $len_des_new) {
-                die('new description is smaller. original = ' . $len_des_org . ' new =' . $len_des_new);
-            }
-            $description = Tags::sort_bookmark($description);
-            $description_original = $media_info->description;
-            if ($description_original != $description) {
-                Tags::del($description_original, $media_id);
-                Tags::add($description, $media_id);
-                Media::where('id', '=', $media_id)->update(array('description' => "$description"));
-            }
-            $skip_to_bookmark = trim(Input::get('skip_to_bookmark'));
-            if (Settings::get('skip_to_bookmark') != $skip_to_bookmark) {
-                Settings::put('skip_to_bookmark', $skip_to_bookmark);
-            }
+        // update description
+
+        $len_des_org = strlen($media_info->description);
+        $len_des_new = strlen($description);
+
+        if ( ($len_des_org * 0.80) > $len_des_new) {
+            die('new description is smaller. original = ' . $len_des_org . ' new =' . $len_des_new);
+        }
+
+        $description = Tags::sort_bookmark($description);
+        $description_original = $media_info->description;
+
+        if ($description_original != $description) {
+            Tags::del($description_original, $media_id);
+            Tags::add($description, $media_id);
+            Media::where('id', '=', $media_id)->update(array('description' => "$description"));
+            $redirect_back = 1;
+        }
+
+        $skip_to_bookmark = trim(Input::get('skip_to_bookmark'));
+        if (Settings::get('skip_to_bookmark') != $skip_to_bookmark) {
+            Settings::put('skip_to_bookmark', $skip_to_bookmark);
+        }
+
+        if ($redirect_back) {
             $url_redirect =  '/watch/' . $media_id . '/' . $_POST['ref_page'];
         } else {
             if (strpos($_POST['ref_page'],'-')) {
