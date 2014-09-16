@@ -1,28 +1,6 @@
 <?php
 
-if (isset($_SERVER["WINDIR"]))
-{
-    $private_media_dir = "X:\\dn\\vid\\";
-    $public_media_folder = '/home/boby/store/cbt/www/';
-    $ffmpeg_path = 'C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe';
-}
-else
-{
-    $private_media_dir = "/mnt/x/dn/vid/";
-    $public_media_folder = '/home/boby/store/cbt/www/';
-    $ffmpeg_path = '/home/boby/bin/ffmpeg';
-}
-
-if (is_dir($private_media_dir))
-{
-    $video_folder = $private_media_dir;
-    $thumb_folder = 'dn/thumb/';
-}
-else
-{
-    $video_folder = $public_media_folder;
-    $thumb_folder = '1/thumb/';
-}
+require 'settings.php';
 
 return array(
 

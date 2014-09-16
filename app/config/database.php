@@ -1,23 +1,6 @@
 <?php
 
-if (isset($_SERVER["WINDIR"]))
-{
-    $private_media_dir = "X:\\dn\\vid\\";
-    $public_media_folder = '/home/boby/store/cbt/www/';
-}
-else
-{
-    $private_media_dir = "/mnt/x/dn/vid/";
-    $public_media_folder = '/home/boby/store/cbt/www/';
-
-}
-
-if (is_dir($private_media_dir)) {
-    $dbName = 'xyl';
-} else {
-    $dbName = 'db2';
-}
-
+require 'settings.php';
 
 return array(
 
