@@ -53,16 +53,6 @@ class MediaController extends BaseController {
 
             $description = trim($description);
 
-            if (strpos($description, 'todo') === false) {
-                $dataUpdate = array();
-                $dataUpdate['view_time'] = time();
-                $dataUpdate['views'] = $media_info->views + 1;
-                $dataUpdate['view_again'] = Media::getViewAgain($media_info->views, $media_info->likes);
-                Media::where('id', '=', $media_id)->update($dataUpdate);
-            } else {
-                $redirect_back = 1;
-            }
-
             // update description
 
             $len_des_org = strlen($media_info->description);
@@ -81,7 +71,16 @@ class MediaController extends BaseController {
                 Media::where('id', '=', $media_id)->update(array('description' => "$description"));
                 $redirect_back = 1;
             }
+        }
 
+        // if not edit, update views
+
+        if (! $redirect_back) {
+            $dataUpdate = array();
+            $dataUpdate['view_time'] = time();
+            $dataUpdate['views'] = $media_info->views + 1;
+            $dataUpdate['view_again'] = Media::getViewAgain($media_info->views, $media_info->likes);
+            Media::where('id', '=', $media_id)->update($dataUpdate);
         }
 
         $skip_to_bookmark = trim(Input::get('skip_to_bookmark'));
