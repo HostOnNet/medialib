@@ -388,7 +388,7 @@ $(document).ready(function()
 
     $('#edit_button').click(function() {
         $("#txt_description").prop('disabled', false);
-        $("#txt_description").prop('visibility', "visible");
+         console.log("made visible");
     });
 }
 );

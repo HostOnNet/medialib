@@ -24,7 +24,7 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 <div id="watch_col_form">
         <input type="hidden" name="media_id" value="<?php echo $media->id; ?>"></input>
         <input type="hidden" name="ref_page" value="<?php echo $ref_page; ?>"></input>
-        <textarea name="description" id="txt_description" rows="5" cols="70" disabled style="visibility: hidden"><?php echo Tags::sort_bookmark($media->description); ?></textarea>
+        <textarea name="description" id="txt_description" rows="5" cols="70" disabled><?php echo Tags::sort_bookmark($media->description); ?></textarea>
 </div>
 
 <div id="watch_col_player">
