@@ -36,10 +36,9 @@ function ms2hhmmss(milli_seconds)
     return result;
 }
 
-function mediaTimeUpdate(event)
-{
-    if (media_volume_set == false)
-    {
+function mediaTimeUpdate(event) {
+
+    if (media_volume_set == false) {
         player.audio.volume = media_volume;
         media_volume_set = true;
         $('#volume_input').fadeOut(200).fadeIn(200);
@@ -47,16 +46,11 @@ function mediaTimeUpdate(event)
 
     $('#currentTime').html(ms2hhmmssms(event));
 
-    if (end_time > 0 && play_next_media == true)
-    {
-        if (event > end_time)
-        {
+    if (end_time > 0 && play_next_media == true) {
+        if (event > end_time) {
             play_next_media = false;
-            console.log("Submit form");
             $('#media_edit').submit();
-        }
-        else
-        {
+        } else {
             $('#skip_time_remaining').html(ms2hhmmss(end_time - event));
         }
     }
