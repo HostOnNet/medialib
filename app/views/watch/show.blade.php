@@ -11,7 +11,8 @@
     <span id="edit_button" class="btn btn-success btn-sm">Edit</span>
 </p>
 
-<form method="post" action="/media/save" id="media_edit" class="form-horizontal">
+
+{{ Form::open(['method' => 'post', 'id' => 'media_edit', 'class' => 'form-horizontal', 'url' =>  '/media/save' ]) }}
 
 
 <div id="watch_col_form">
@@ -59,8 +60,7 @@
 
 </div>
 
-
-</forum>
+{{ Form::close() }}
 
 <?php
 
