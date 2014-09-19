@@ -13,9 +13,9 @@ class SettingsController extends BaseController
     {
         $autoForwardDuration = (int) Input::get('autoForwardDuration');
         $skip_to_bookmark = Input::get('skip_to_bookmark');
-
         Settings::put('autoForwardDuration', $autoForwardDuration);
         Settings::put('skip_to_bookmark', $skip_to_bookmark);
+        Settings::put('auto_forward', Input::get('auto_forward'));
         return Redirect::to('settings');
     }
 
