@@ -77,11 +77,6 @@ class MediaController extends BaseController {
             Media::where('id', '=', $media_id)->update($dataUpdate);
         }
 
-        $skip_to_bookmark = trim(Input::get('skip_to_bookmark'));
-        if (Settings::get('skip_to_bookmark') != $skip_to_bookmark) {
-            Settings::put('skip_to_bookmark', $skip_to_bookmark);
-        }
-
         if ($redirect_back) {
             $url_redirect =  '/watch/' . $media_id . '/' . $_POST['ref_page'];
         } else {

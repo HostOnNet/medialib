@@ -88,7 +88,6 @@ echo "<div>" . Tags::get_bookmarks($media->description, $media->id) . "</div>";
     <div id="watch_controls">
         <div class="form-inline">
             <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" min=20 max=200 class="form-control" style="width:90px">
-            <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>" class="form-control">
             <input type="submit" name="submit" value="Next >>" class="btn btn-default"></input>
             <?php echo $videos_in_playlist ; ?>
         </div>
