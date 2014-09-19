@@ -175,43 +175,6 @@ $(document).ready(function()
 
     });
 
-    $('#media_info').click(function(event)
-    {
-        event.preventDefault();
-
-        if ($('#media_info_display').is(":visible"))
-        {
-            $('#media_info_display').hide();
-            $('#media_info').html("Info");
-        }
-        else
-        {
-            media_id = $(this).attr('alt');
-
-            var ajax_url = "/media/info/" + media_id;
-
-             $.ajax({
-                 type: "GET",
-                 url: ajax_url,
-                 dataType: 'html',
-                 success: function(html){
-                    $('#media_info_display').html(html);
-                    $('#media_info_display').show();
-                 },
-                 error: media_info_error
-             });
-
-             $('#media_info').html("Hide");
-        }
-
-        function media_info_error()
-        {
-             alert('Ajax Error');
-         }
-
-
-    });
-
     $('a.bookmark').click(function(event)
     {
         event.preventDefault();

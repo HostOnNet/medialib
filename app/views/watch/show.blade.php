@@ -37,7 +37,6 @@
 	<a id=seekten href="#">Seek 10</a> &nbsp;
 	<a id=seek_ten href="#">Seek -10</a> &nbsp;
 	<a id=thumb_link href="#">Thumb</a> &nbsp;
-    <a id=media_info  href="#" alt="{{ $media->id }}">Info</a>
 
 	<div id="watch_time">
         <div id="currentTime">00:00:00.000</div> &nbsp; &nbsp;
@@ -59,8 +58,6 @@
 </div>
 
 {{ Form::close() }}
-
-<div id="media_info_display"></div>
 
 <script type="text/javascript">
 jQuery(function () {

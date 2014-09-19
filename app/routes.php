@@ -14,7 +14,6 @@
 Route::any('/', 'SearchController@search');
 Route::any('media', 'MediaController@listMedia'); # displays all media, paginated
 Route::post('media/save', 'MediaController@save');
-Route::get('media/info/(:num)', 'MediaController@info');
 
 Route::get('watch/{media_id}/{ref_page}','WatchController@show')->where('media_id','[0-9]+')->where('ref_page','.+');
 

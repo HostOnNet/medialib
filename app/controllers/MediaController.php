@@ -110,20 +110,4 @@ class MediaController extends BaseController {
         Backup::db();
         return Redirect::to($url_redirect);
     }
-
-    function info($media_id) {
-       $media_info = DB::table('medias')->find($media_id);
-       $description = $media_info->description;
-       if (Actor::haveName($description)) {
-            $name = Actor::getName($description);
-            echo "<a href='/tag/" . $name . "'>" . $name . "</a>";
-            $name_en = Actor::getNameEn($name);
-            $name_jp = Actor::getNameJp($name);
-            echo Actor::getLinks($name_en);
-            echo Actor::getLinks($name_jp);
-       } else {
-            echo 'Performer name not found';
-       }
-       return '';
-    }
 }

@@ -88,22 +88,12 @@ a.current_keyword:visited {
     font-size: 12pt;
 }
 
-
 #txt_description {
 	width:721px;
 	height:560px;
 	margin-bottom: 5px;
 }
 
-#media_info_display {
-	clear:both;
-	display:block;
-	border:1px solid;
-	background-color: #ffffbb;
-	padding:1em;
-    text-align: center;
-	display:none;
-}
 
 /* auto complete */
 
