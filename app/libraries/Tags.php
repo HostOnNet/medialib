@@ -354,14 +354,23 @@ class Tags
 			$time = trim($keyval_array[0]);
 			$keywords = $keyval_array[1];
 
-			if (strpos($keywords, $tag) !== false)
-            {
-                $valid_times[] = $time;
-			}
+            $keywords_all = array();
+
+            if (strpos($keywords, ',') !== false) {
+                $keywords_all = explode(',', $keywords);
+            } else {
+                $keywords_all[] = $keywords;
+            }
+
+            foreach ($keywords_all as $keywords_current) {
+                $keywords_current = trim($keywords_current);
+                if ($keywords_current == $tag) {
+                    $valid_times[] = $time;
+                }
+            }
 		}
 
-        if (empty($valid_times))
-        {
+        if (empty($valid_times)) {
             return false;
         }
 
