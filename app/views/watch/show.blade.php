@@ -76,7 +76,6 @@ jQuery(function () {
 
 <?php
 
-$auto_forward = Settings::get('auto_forward');
 $auto_play_time_hms = Medias::isAutoPlay($media, $ref_page);
 
 if ($auto_play_time_hms === false) {
@@ -84,7 +83,11 @@ if ($auto_play_time_hms === false) {
     $time_end_ms = 0;
 } else {
     $time_start_ms = Time::hmsms2ms($auto_play_time_hms);
-    $time_end_ms = $time_start_ms + (Settings::get('autoForwardDuration') * 1000);
+    $time_end_ms = $time_start_ms + (Settings::get('auto_forward_duration') * 1000);
+}
+
+if (! Settings::get('auto_forward')) {
+    $time_end_ms = 0;
 }
 
 ?>
@@ -105,12 +108,6 @@ if ($auto_play_time_hms === false) {
 
         // check if we got event, if not reload
         setTimeout(function() {  if (gotEvent==false) location.reload(); }, 200);
-
-        $('#skip_time_more').html('more');
-
-        $('#skip_time_more').click(function() {
-            end_time = end_time + 30000;
-        });
 
         // highlight current auto play time.
 
@@ -134,5 +131,9 @@ if ($auto_play_time_hms === false) {
 @endif
 
 @if ($time_end_ms > 0)
-<script>end_time = {{ $time_end_ms }};</script>
+<script>
+end_time = {{ $time_end_ms }};
+$('#skip_time_more').html('more');
+$('#skip_time_more').click(function() { end_time = end_time + 30000; });
+</script>
 @endif
