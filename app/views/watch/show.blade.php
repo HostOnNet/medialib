@@ -1,5 +1,6 @@
 <?php
 
+$auto_forward = Settings::get('auto_forward');
 $is_playlist = (strpos($ref_page, 'playlist') !== false);
 $is_tag = (strpos($ref_page, 'tag') !== false);
 
@@ -88,27 +89,6 @@ echo "<div>" . Tags::get_bookmarks($media->description, $media->id) . "</div>";
         <div class="form-inline">
             <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" min=20 max=200 class="form-control" style="width:90px">
             <input type="text" name="skip_to_bookmark" value="<?php echo Settings::get('skip_to_bookmark'); ?>" class="form-control">
-            <?php
-            if ($is_playlist || $is_tag) {
-                echo '<select name="autoForwardDuration" class="form-control">';
-                $durations = array(0, 10, 20, 25, 30, 45, 60, 90, 120);
-                $autoForwardDuration = Settings::get('autoForwardDuration');
-                foreach ($durations as $duration_1) {
-                    if ($duration_1 == $autoForwardDuration) {
-                        $selected = "selected";
-                    } else {
-                        $selected = '';
-                    }
-
-                    if ($duration_1 == 0) {
-                        echo "<option value=\"$duration_1\" $selected>No Auto</option>";
-                    } else {
-                        echo "<option value=\"$duration_1\" $selected>$duration_1 Sec</option>";
-                    }
-                }
-                echo '</select>';
-            }
-            ?>
             <input type="submit" name="submit" value="Next >>" class="btn btn-default"></input>
             <?php echo $videos_in_playlist ; ?>
         </div>

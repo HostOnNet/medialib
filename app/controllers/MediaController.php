@@ -41,12 +41,6 @@ class MediaController extends BaseController {
             Media::where('id', '=', $media_id)->update(['volume' => $volume]);
         }
 
-        $autoForwardDuration = Input::get('autoForwardDuration');
-
-        if (isset($autoForwardDuration)) {
-            Settings::put('autoForwardDuration', $autoForwardDuration);
-        }
-
         $redirect_back = 0;
 
         if ($description != null) {
