@@ -43,9 +43,28 @@ class Medias
 
     }
 
-    public static function isAutoPlay($ref_page) {
+    public static function isAutoPlay($media, $ref_page) {
         $is_playlist = (strpos($ref_page, 'playlist') !== false);
         $is_tag = (strpos($ref_page, 'tag') !== false);
-        return ($is_playlist || $is_tag);
+        if ($is_playlist || $is_tag) {
+            // This media need to be auto played, find where to start playing.
+            $skip_to_bookmark = Settings::get('skip_to_bookmark');
+            if (strlen($skip_to_bookmark) > 2)  {
+                if ($skip_to_bookmark == 'auto') {
+                    $media_tag_time = DB::table('media_tag_time')->where('media_id','=', $media->id)->first();
+                    $time_start = $media_tag_time->time_start;
+                } else {
+                    $time_start = Tags::getTagTime($media->description, $skip_to_bookmark, $media->id);
+                }
+            } else if (strpos($ref_page, 'x')) {
+                $ref_page_parts = explode('x',$ref_page);
+                $pm_id = $ref_page_parts[1];
+                $media_tag_time_record = DB::table('playlist_media')->where('pm_id','=',$pm_id)->first();
+                $time_start = $media_tag_time_record->pm_time_start;
+            }
+            return $time_start;
+        } else {
+            return false;
+        }
     }
 }

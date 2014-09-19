@@ -57,53 +57,9 @@
         </div>
     </div>
 
-
 </div>
 
 {{ Form::close() }}
-
-<?php
-
-$auto_forward = Settings::get('auto_forward');
-$auto_play = Medias::isAutoPlay($ref_page);
-$time_start_ms = 0;
-$time_start = '';
-$skip_to_bookmark_done = 0;
-
-if ($auto_play)
-{
-    $skip_to_bookmark = Settings::get('skip_to_bookmark');
-    $autoForwardDuration = Settings::get('autoForwardDuration');
-    $autoforward =  ($autoForwardDuration > 0) ? 1 : 0;
-
-    if (strlen($skip_to_bookmark) > 2)
-    {
-        if ($skip_to_bookmark == 'auto')
-        {
-            $media_tag_time = DB::table('media_tag_time')->where('media_id','=',$media->id)->first();
-            $time_start = $media_tag_time->time_start;
-        }
-        else
-        {
-            $skip_to_bookmark_done = 1;
-            $time_start = Tags::getTagTime($media->description, $skip_to_bookmark, $media->id);
-        }
-    }
-    else if (strpos($ref_page, 'x'))
-    {
-        $ref_page_parts = explode('x',$ref_page);
-        $pm_id = $ref_page_parts[1];
-        $media_tag_time_record = DB::table('playlist_media')->where('pm_id','=',$pm_id)->first();
-        $time_start = $media_tag_time_record->pm_time_start;
-    }
-
-    $time_start_ms = Time::hmsms2ms($time_start);
-    $time_end_ms = $time_start_ms + ($autoForwardDuration * 1000);
-
-}
-
-?>
-
 
 <div id="media_info_display"></div>
 
@@ -118,47 +74,57 @@ jQuery(function () {
 });
 </script>
 
+
 <?php
 
-if ($time_start_ms > 10 && $autoforward) {
+$auto_forward = Settings::get('auto_forward');
+$auto_play_time_hms = Medias::isAutoPlay($media, $ref_page);
+
+if ($auto_play_time_hms === false) {
+    $time_start_ms = 0;
+    $time_end_ms = 0;
+} else {
+    $time_start_ms = Time::hmsms2ms($auto_play_time_hms);
+    $time_end_ms = $time_start_ms + 10000;
+}
 
 ?>
 
-<script type="text/javascript">
-jQuery(function () {
+@if ($time_start_ms > 10)
+<script>
+    jQuery(function () {
+        var gotEvent = false;
+        player.playlist.play();
+        $("#playbutton").html('Stop');
 
-    var gotEvent = false;
+        function seekOnStart(event) {
+            gotEvent = true;
+            setTimeout(function() { player.input.time = {{ $time_start_ms }};  }, 400);
+        }
 
-    player.playlist.play();
+        player.addEventListener('MediaPlayerOpening', seekOnStart, false);
 
-	$("#playbutton").html('Stop');
+        // check if we got event, if not reload
+        setTimeout(function() {  if (gotEvent==false) location.reload(); }, 200);
 
-	function seekOnStart(event) {
-        gotEvent = true;
-		setTimeout(function() { player.input.time = <?php echo $time_start_ms; ?>;  }, 400);
-    }
+        $('#skip_time_more').html('more');
 
-    end_time = <?php echo $time_end_ms; ?>;
-	player.addEventListener('MediaPlayerOpening', seekOnStart, false);
+        $('#skip_time_more').click(function() {
+            end_time = end_time + 30000;
+        });
 
-    // check if we got event, if not reload
-    setTimeout(function() {  if (gotEvent==false) location.reload(); }, 200);
-
-    $('#skip_time_more').html('more');
-
-    $('#skip_time_more').click(function() {
-        end_time = end_time + <?php echo $autoForwardDuration * 1000; ?>;
     });
-
-});
-
 </script>
+@endif
+
+@if ($time_end_ms > 0)
+<script>end_time = {{ $time_end_ms }};</script>
+@endif
+
 
 <?php
 
-}
-
-if ($skip_to_bookmark_done == 1)
+if (isset($skip_to_bookmark_done))
 {
 
 ?>
