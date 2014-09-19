@@ -52,6 +52,7 @@ function mediaTimeUpdate(event)
         if (event > end_time)
         {
             play_next_media = false;
+            console.log("Submit form");
             $('#media_edit').submit();
         }
         else

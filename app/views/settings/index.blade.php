@@ -10,7 +10,7 @@
     <div class="form-group">
         <label class="col-sm-3 control-label" for="">Autoforward Duration</label>
         <div class="col-sm-5">
-            {{ Form::select("autoForwardDuration", [10, 20, 30, 45, 60, 90, 120], Settings::get('autoForwardDuration'), ['class' =>  'form-control'] ) }}
+            {{ Form::select("autoForwardDuration", [10 => 10, 20 => 20, 30 => 30, 45 => 45, 60 => 60, 90 => 90, 120 => 120], Settings::get('autoForwardDuration'), ['class' =>  'form-control'] ) }}
         </div>
     </div>
 

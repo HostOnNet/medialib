@@ -1,20 +1,12 @@
-<?php
-
-$auto_forward = Settings::get('auto_forward');
-$is_playlist = (strpos($ref_page, 'playlist') !== false);
-$is_tag = (strpos($ref_page, 'tag') !== false);
-
-?>
-
-<script type="text/javascript">var media_volume = <?php echo $media->volume; ?>;</script>
+<script type="text/javascript">var media_volume = {{ $media->volume }};</script>
 <script language="JavaScript" type="text/javascript" src="/js/watch.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/jquery.autocomplete.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/textarea_caret.js"></script>
 
 <p>
-    <?php echo $media->file_name; ?> [<span id="media_id"><?php echo $media->id; ?></span>]
-    [Likes: <?php echo $media->likes ?>]
-    [Views: <?php echo $media->views; ?>]
+    <?php echo $media->file_name; ?> [<span id="media_id">{{ $media->id }}</span>]
+    [Likes: {{ $media->likes }}]
+    [Views: {{ $media->views }}]
     <?php if ($ref_page == 'random-search') echo ' ' . Playlist::getTotalVideos(Playlist::getId('WATCH')); ?>
     <span id="edit_button" class="btn btn-success btn-sm">Edit</span>
 </p>
@@ -23,13 +15,20 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 
 
 <div id="watch_col_form">
-        <input type="hidden" name="media_id" value="<?php echo $media->id; ?>"></input>
-        <input type="hidden" name="ref_page" value="<?php echo $ref_page; ?>"></input>
-        <textarea name="description" id="txt_description" rows="5" cols="70" disabled><?php echo Tags::sort_bookmark($media->description); ?></textarea>
+        <input type="hidden" name="media_id" value="{{ $media->id }}">
+        <input type="hidden" name="ref_page" value="{{ $ref_page }}">
+        <textarea name="description" id="txt_description" rows="5" cols="70" disabled>{{ Tags::sort_bookmark($media->description) }}</textarea>
 </div>
 
 <div id="watch_col_player">
-	<embed type="application/x-vlc-plugin" name="VLC" id="vlcp" autoplay="no" loop="no" toolbar="no" volume="100" width="720" height="406" target="file:///<?php echo Config::get('app.video_folder'); ?>/tmp/live.m3u">
+    <embed type="application/x-vlc-plugin" name="VLC" id="vlcp"
+           autoplay="no"
+           loop="no"
+           toolbar="no"
+           volume="100"
+           width="720"
+           height="406"
+           target="file:///{{ Config::get('app.video_folder') }}/tmp/live.m3u">
 
 	<br />
 
@@ -38,17 +37,40 @@ $is_tag = (strpos($ref_page, 'tag') !== false);
 	<a id=seekten href="#">Seek 10</a> &nbsp;
 	<a id=seek_ten href="#">Seek -10</a> &nbsp;
 	<a id=thumb_link href="#">Thumb</a> &nbsp;
-    <a id=media_info  href="#" alt="<?php echo $media->id; ?>">Info</a>
+    <a id=media_info  href="#" alt="{{ $media->id }}">Info</a>
 
-	<div id="watch_time"><div id="currentTime">00:00:00.000</div> &nbsp; &nbsp; <div id="wt_2"><?php echo "$media->time_start_hms - $media->time_end_hms"; ?>  &nbsp; <?php echo $last_viewed; ?></div> <div id="skip_time_remaining"></div> <div id="skip_time_more"></div> </div>
+	<div id="watch_time">
+        <div id="currentTime">00:00:00.000</div> &nbsp; &nbsp;
+        <div id="wt_2"><?php echo "$media->time_start_hms - $media->time_end_hms"; ?>  &nbsp; <?php echo $last_viewed; ?></div>
+        <div id="skip_time_remaining"></div>
+        <div id="skip_time_more"></div>
+    </div>
+
+    <div>{{ Tags::get_bookmarks($media->description, $media->id) }}</div>
+
+    <div id="watch_controls">
+        <div class="form-inline">
+            <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" min=20 max=200 class="form-control" style="width:90px">
+            <input type="submit" name="submit" value="Next >>" class="btn btn-default">
+            {{ $videos_in_playlist }}
+        </div>
+    </div>
+
+
+</div>
+
+
+</forum>
 
 <?php
 
+$auto_forward = Settings::get('auto_forward');
+$auto_play = Medias::isAutoPlay($ref_page);
 $time_start_ms = 0;
 $time_start = '';
 $skip_to_bookmark_done = 0;
 
-if ($is_playlist || $is_tag)
+if ($auto_play)
 {
     $skip_to_bookmark = Settings::get('skip_to_bookmark');
     $autoForwardDuration = Settings::get('autoForwardDuration');
@@ -80,24 +102,8 @@ if ($is_playlist || $is_tag)
 
 }
 
-echo "<div>" . Tags::get_bookmarks($media->description, $media->id) . "</div>";
-
 ?>
 
-
-    <div id="watch_controls">
-        <div class="form-inline">
-            <input type="number" id="volume_input" name="volume" value="<?php echo $media->volume; ?>" min=20 max=200 class="form-control" style="width:90px">
-            <input type="submit" name="submit" value="Next >>" class="btn btn-default"></input>
-            <?php echo $videos_in_playlist ; ?>
-        </div>
-    </div>
-
-
-</div>
-
-
-</forum>
 
 <div id="media_info_display"></div>
 

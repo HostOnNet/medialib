@@ -42,4 +42,10 @@ class Medias
         );
 
     }
+
+    public static function isAutoPlay($ref_page) {
+        $is_playlist = (strpos($ref_page, 'playlist') !== false);
+        $is_tag = (strpos($ref_page, 'tag') !== false);
+        return ($is_playlist || $is_tag);
+    }
 }
