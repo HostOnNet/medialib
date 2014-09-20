@@ -44,6 +44,7 @@ class Medias
     }
 
     public static function isAutoPlay($media, $ref_page) {
+        if ($ref_page == 'playlist-0') return false;
         $is_playlist = (strpos($ref_page, 'playlist') !== false);
         $is_tag = (strpos($ref_page, 'tag') !== false);
         if ($is_playlist || $is_tag) {
