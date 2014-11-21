@@ -7,7 +7,7 @@
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="40">40</option>
-                <option value="1000">ALL</option>
+                <option value="1000" selected>ALL</option>
             </select>
             <span class="badge badge-success"><?php echo $tag ?></span>
         </form>
