@@ -196,7 +196,8 @@ class PlaylistController extends BaseController
 
                     if ($tag_id)
                     {
-                        $media_list = DB::select('SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id AND MA.view_again < ? ORDER BY TM.likes DESC LIMIT ?', array($tag_id, $timeNow, $num_medias));
+                        //$media_list = DB::select('SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id AND MA.view_again < ? ORDER BY TM.likes DESC LIMIT ?', array($tag_id, $timeNow, $num_medias));
+                        $media_list = DB::select('SELECT * FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes_per_tag DESC LIMIT ?', array($tag_id, $num_medias));
 
                         foreach ($media_list as $media)
                         {

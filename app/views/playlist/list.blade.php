@@ -20,6 +20,6 @@ foreach($playlists as $playlist)
 
 <h1>Build Playlists</h1>
 
-<a href=/playlist_make/2>Build Best Medias</a><br />
-<a href=/playlist_make/1>Build Best Tags</a><br />
-<a href=/settings/todays>Build Todays</a><br />
+<a href=/playlist_make/2 class="btn btn-success">Best Medias</a>
+<a href=/playlist_make/1 class="btn btn-success">Best Tags</a>
+<a href=/settings/todays  class="btn btn-success">Build Todays</a>
