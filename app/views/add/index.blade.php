@@ -2,13 +2,29 @@
 
 @section('content')
 
-<h1>Add Records</h1>
+<div class="page-header">
+    <h1>Add Records</h1>
+</div>
 
-<form action="/add/save" method="post">File Name : <br />
-<input type="text" name="file_name" value=""  size="100" autocomplete="off" /> <br />
-<br />
-<input type="submit" name="submit" value="Add" class="btn-custom" />
-</form>
+<div class="row">
+    <div class="col-md-8">
+        <form action="/add/save" method="post"  class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-3" for="">File Name</label>
+                <div class="col-md-4">
+                    <input type="text" name="file_name" value="" autocomplete="off" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-7">
+                    <input type="submit" name="submit" value="Add" class="btn btn-success btn-block">
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
 
 @include('tools.links')
 

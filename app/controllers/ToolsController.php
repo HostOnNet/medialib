@@ -6,8 +6,7 @@ class ToolsController extends BaseController
     {
         $thumb_folder =   public_path() . '//' . Config::get('app.thumb_folder');
 
-        if (!is_dir($thumb_folder))
-        {
+        if (!is_dir($thumb_folder)) {
             die('Thumb folder not found - ' . $thumb_folder);
         }
 
@@ -17,23 +16,15 @@ class ToolsController extends BaseController
 
         $message = '';
 
-        while ($file = readdir($dh))
-        {
-            if (! in_array($file, $ignore_files))
-            {
-                if (preg_match('/(.*)\.jpg/', $file, $match_all))
-                {
+        while ($file = readdir($dh)) {
+            if (! in_array($file, $ignore_files)) {
+                if (preg_match('/(.*)\.jpg/', $file, $match_all)) {
                     $media_id = (int) $match_all[1];
                     $media = Media::find($media_id);
-
-                    if (empty($media))
-                    {
+                    if (empty($media)) {
                         $message .= "$file DELETED<br />";
-
                         $file_path = $thumb_folder . $file;
-
-                        if (is_file($file_path) && file_exists($file_path))
-                        {
+                        if (is_file($file_path) && file_exists($file_path)) {
                             unlink($file_path);
                         }
                     }
@@ -44,13 +35,12 @@ class ToolsController extends BaseController
 
         closedir($dh);
 
-        if (empty($message))
-        {
+        if (empty($message)) {
             $message = 'Thumbs are ok!';
         }
 
-        $this->layout->title = 'Validate Thumb';
-        $this->layout->nest('content','tools.validate_thumb', array('message' => $message ) );
+        return View::make('tools.validate_thumb', array('message' => $message ));
+
     }
 
     public function validate_media_tag_time()
@@ -82,14 +72,12 @@ class ToolsController extends BaseController
 
         $message  .= '<p>DONE</p>';
 
-        $this->layout->title = 'Validate media_tag_time';
-        $this->layout->nest('content','tools.validate_media_tag_time', array('message' => $message ) );
+        return View::make('tools.validate_media_tag_time', array('message' => $message ));
     }
 
     public function join_medias_single()
     {
-        $this->layout->title = 'Join Media Single';
-        $this->layout->nest('content','tools.join_medias_single');
+        return View::make('tools.join_medias_single');
     }
 
     public function join_medias_single_post()
@@ -99,13 +87,11 @@ class ToolsController extends BaseController
 
         $medias = Media::where('file_name','=',$file_name)->get();
 
-        if (empty($medias))
-        {
+        if (empty($medias)) {
             return "No Media found";
         }
 
-        if (count($medias) == 1)
-        {
+        if (count($medias) == 1) {
             return "ALREADY SINGLE";
         }
 
@@ -116,56 +102,43 @@ class ToolsController extends BaseController
 
         echo "<textarea cols=100 rows=40>";
 
-        foreach ($medias as $media)
-        {
+        foreach ($medias as $media) {
             $time_start_hms = $media->time_start_hms;
             $time_end_hms = $media->time_end_hms;
             $description = $media->description;
             $media_id = $media->id;
 
-            if (empty($description_new))
-            {
+            if (empty($description_new)) {
                 $description_new = $description;
-            }
-            else
-            {
+            } else {
                 $description_new = $description_new . ' | ' . $description;
             }
-
-
             $time_start = Time::hms2sec($time_start_hms);
             $time_end = Time::hms2sec($time_end_hms);
 
-            if ($media_id_main == 0)
-            {
+            if ($media_id_main == 0) {
                 $media_id_main = $media_id;
             }
 
-            if ($time_min == 0)
-            {
+            if ($time_min == 0) {
                 $time_min = $time_start;
             }
 
-            if ($time_max == 0)
-            {
+            if ($time_max == 0) {
                 $time_max = $time_end;
             }
 
-            if ($time_min > $time_start)
-            {
+            if ($time_min > $time_start) {
                 $time_min = $time_start;
             }
 
-            if ($time_max < $time_end)
-            {
+            if ($time_max < $time_end) {
                 $time_max = $time_end;
             }
 
-            if ($media_id_main != $media_id)
-            {
+            if ($media_id_main != $media_id) {
                 $sql = 'DELETE FROM medias where id=' . $media_id . ';';
                 echo "$sql\n";
-
                 $sql = 'UPDATE media_tag_time SET media_id = ' . $media_id_main . ' where media_id=' . $media_id . ';';
                 echo "$sql\n";
             }
@@ -190,8 +163,7 @@ class ToolsController extends BaseController
 
         echo "<p>Length = " . $len . "</p>";
 
-        if ($len > $len_max)
-        {
+        if ($len > $len_max) {
             echo '<h1>Too BIG</h1>';
         }
 

@@ -2,7 +2,9 @@
 
 @section('content')
 
-<h1>Tag Cloud</h1>
+<div class="page-header">
+    <h1>Tag Cloud</h1>
+</div>
 
 <div id="tagcloud">
 <?php

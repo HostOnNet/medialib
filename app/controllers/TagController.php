@@ -25,9 +25,7 @@ class TagController extends BaseController {
 		$data = array('media_list' => $media_list, 'tag_id' => $tag_id, 'tag'=>$tag);
 
 		if (empty($media_list)) {
-			$this->layout->title = "Tag Videos";
-			$this->layout->nest('content', 'tag.search_empty', $data);
-			return;
+			return View::make('tag.search_empty', $data);
 		}
 
         return View::make('tag.search', $data);
@@ -54,7 +52,6 @@ class TagController extends BaseController {
 		}
 
 		$data = array('log'=>$log);
-		$this->layout->title = "Rebuild Tags";
         return View::make('tag.rebuild', $data);
 	}
 
