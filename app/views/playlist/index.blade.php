@@ -2,6 +2,9 @@
 
 @section('content')
 
+<div class="container">
+
+
 <div class="page-header">
     <h1>Playlists</h1>
 </div>
@@ -44,6 +47,8 @@ if ($tag_id) {
         @endforeach
 
     </div>
+</div>
+
 </div>
 
 @stop
