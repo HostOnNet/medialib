@@ -16,6 +16,7 @@ class CreateTablePlaylistSeeds extends Migration {
             $table->increments('id');
             $table->string('name');
             $table->text('seed');
+            $table->timestamps();
         });
 	}
 
@@ -26,7 +27,7 @@ class CreateTablePlaylistSeeds extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('playlist_seeds');
 	}
 
 }

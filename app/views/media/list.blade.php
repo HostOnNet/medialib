@@ -30,7 +30,7 @@ foreach ($media_list as $media)
 
 ?>
 
-</ul>
+</div>
 
 <div class="span12">
     <?php echo $page_links; ?>

@@ -1,11 +1,11 @@
 <?php
 
-class PlaylistSeedsController extends BaseController {
+class PlaylistSeedController extends BaseController {
 
     public function index()
     {
         $seeds = PlaylistSeed::all();
-        return View::make('playlistseeds.index', ['seeds' => $seeds]);
+        return View::make('playlistseed.index', ['seeds' => $seeds]);
     }
 
     public function generate($seedId)
@@ -50,6 +50,21 @@ class PlaylistSeedsController extends BaseController {
 
         $url = '/playlist/' . $playListId;
         return Redirect::to($url);
+    }
+
+    public function edit($seedId)
+    {
+        $playListSeed = PlaylistSeed::find($seedId);
+        return View::make('playlistseed.edit', ['playListSeed' => $playListSeed]);
+    }
+
+    public function editSave($seedId)
+    {
+        $playListSeed = PlaylistSeed::find($seedId);
+        $playListSeed->seed = Input::get('seed');
+        $playListSeed->save();
+        $url = '/playlist_seed_edit/' . $seedId;
+        return Redirect::to($url)->with('flash_message','Saved');
     }
 
 } 
