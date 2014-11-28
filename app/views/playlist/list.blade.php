@@ -17,9 +17,9 @@ foreach($playlists as $playlist)
 
 <h1>Build Playlists</h1>
 
+<a href=/playlist_seeds  class="btn btn-success">Playlist Seeds</a>
 <a href=/playlist_make/2 class="btn btn-success">Best Medias</a>
 <a href=/playlist_make/1 class="btn btn-success">Best Tags</a>
-<a href=/settings/todays  class="btn btn-success">Build Todays</a>
 
 <?php
 

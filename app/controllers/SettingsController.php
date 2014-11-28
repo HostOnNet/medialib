@@ -19,19 +19,4 @@ class SettingsController extends BaseController
         return Redirect::to('settings');
     }
 
-    public function todays()
-    {
-        if (isset($_POST['submit']))
-        {
-            $todays = Input::get('todays');
-            Settings::put('todays', $todays);
-            return Redirect::to('/playlist_make/3');
-        }
-        else
-        {
-            $this->layout->title = 'Settings :: Todays';
-            $this->layout->nest('content','settings.todays');
-        }
-    }
-
 }

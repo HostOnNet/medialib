@@ -15,7 +15,7 @@ class CreateTablePlaylistSeeds extends Migration {
         Schema::create('playlist_seeds', function($table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('seed');
+            $table->text('seed');
         });
 	}
 
