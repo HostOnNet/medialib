@@ -73,7 +73,6 @@ class SearchController extends BaseController
             return Redirect::to($url);
         }
 
-        $this->layout->title = 'Search';
-        $this->layout->nest('content','search.search',array('media_list'=>$media_list, 'is_search_result' => "$is_search_result"));
+        return View::make('search.search', array('media_list'=>$media_list, 'is_search_result' => "$is_search_result"));
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>{{ $title }}</title>
+<title>@yield('title')</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +43,7 @@
     </nav>
 
     <div id="content" class="span12">
-        {{ $content }}
+        @yield('content')
     </div>
 
 

@@ -1,3 +1,7 @@
+@extends('layouts.master')
+
+@section('content')
+
 <div class="span8  center-block">
     <?php echo $page_links; ?>
 </div>
@@ -37,3 +41,5 @@ foreach ($media_list as $media)
         $('a.thumbnail').tooltip();
     });
 </script>
+
+@stop

@@ -21,8 +21,7 @@ class MediaController extends BaseController {
         }
         $pagination_links = $media_list->appends(array('sort_by' => $sort_by))->links();
 		$data = array('media_list' => $media_list, 'page_links' => $pagination_links );
-		$this->layout->title = "Watch";
-		$this->layout->nest('content','media.list',$data);
+        return View::make('media.list',$data);
 	}
 
     function save()

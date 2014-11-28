@@ -1,3 +1,7 @@
+@extends('layouts.master')
+
+@section('content')
+
 <script type="text/javascript">var media_volume = {{ $media->volume }};</script>
 <script language="JavaScript" type="text/javascript" src="/js/watch.js"></script>
 <script language="JavaScript" type="text/javascript" src="/js/jquery.autocomplete.js"></script>
@@ -134,3 +138,5 @@ $('#skip_time_more').html('more');
 $('#skip_time_more').click(function() { end_time = end_time + 30000; });
 </script>
 @endif
+
+@stop

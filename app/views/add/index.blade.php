@@ -1,3 +1,7 @@
+@extends('layouts.master')
+
+@section('content')
+
 <h1>Add Records</h1>
 
 <form action="/add/save" method="post">File Name : <br />
@@ -7,3 +11,5 @@
 </form>
 
 @include('tools.links')
+
+@stop

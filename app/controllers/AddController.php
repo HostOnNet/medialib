@@ -4,8 +4,7 @@ class AddController extends BaseController
 {
     public function index()
     {
-        $this->layout->title = "Add";
-        $this->layout->nest('content','add.index');
+        return View::make('add.index');
     }
 
     public function save()
@@ -48,8 +47,7 @@ class AddController extends BaseController
 
         Backup::db(1);
 
-        $this->layout->title = "DONE";
-        $this->layout->nest('content','add.done', array('msg' => $msg) );
+        return View::make('add.done', array('msg' => $msg));
     }
 
     function find_media_duration($file_name)

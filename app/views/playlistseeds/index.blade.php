@@ -1,3 +1,7 @@
+@extends('layouts.master')
+
+@section('content')
+
 <div class="page-header">
     <h1>Playlist Seeds</h1>
 </div>
@@ -25,3 +29,5 @@
 
     </div>
 </div>
+
+@stop

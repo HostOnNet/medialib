@@ -5,15 +5,13 @@ class PlaylistSeedsController extends BaseController {
     public function index()
     {
         $seeds = PlaylistSeed::all();
-        $this->layout->title = 'Settings :: Todays';
-        $this->layout->nest('content','playlistseeds.index', ['seeds' => $seeds] );
+        return View::make('playlistseeds.index', ['seeds' => $seeds]);
     }
 
     public function generate($seedId)
     {
         $playListSeed = PlaylistSeed::find($seedId);
 
-        $todays = $playListSeed->seed;
         $timeNow = time();
 
         $playListName = 'todays';
@@ -30,7 +28,7 @@ class PlaylistSeedsController extends BaseController {
 
         Playlist::emptyById($playListId);
 
-        $playListSeedRows = explode("\n", $todays);
+        $playListSeedRows = explode("\n", $playListSeed->seed);
 
         foreach ($playListSeedRows as $playListSeedRow) {
             $playListSeedRow = trim($playListSeedRow);
@@ -52,7 +50,6 @@ class PlaylistSeedsController extends BaseController {
 
         $url = '/playlist/' . $playListId;
         return Redirect::to($url);
-
     }
 
 } 

@@ -1,3 +1,7 @@
+@extends('layouts.master')
+
+@section('content')
+
 <?php
 
 if (!empty($media_list)){
@@ -60,3 +64,5 @@ if ($is_search_result == 1 && $have_result == 0)
 }
 
 ?>
+
+@stop

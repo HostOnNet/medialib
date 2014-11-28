@@ -1,3 +1,7 @@
+@extends('layouts.master')
+
+@section('content')
+
 <h1>Tag Cloud</h1>
 
 <div id="tagcloud">
@@ -39,3 +43,5 @@ $(function () {
 <style type="text/css">
 
 </style>
+
+@stop

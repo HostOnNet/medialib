@@ -1,3 +1,7 @@
+@extends('layouts.master')
+
+@section('content')
+
 <div class="page-header">
     <h1>Playlists</h1>
 </div>
@@ -42,3 +46,4 @@ if ($tag_id) {
     </div>
 </div>
 
+@stop

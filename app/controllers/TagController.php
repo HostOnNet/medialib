@@ -8,8 +8,7 @@ class TagController extends BaseController {
 		$max = DB::table('tags')->where('tag','!=','todo')->orderBy('tag_count','desc')->first();
 		$max_tag_count = $max->tag_count;
 		$data = array('tags' => $tags, 'max_tag_count'=>$max_tag_count);
-		$this->layout->title = "Tag Cloud";
-		$this->layout->nest('content', 'tag.index', $data);
+        return View::make('tag.index', $data);
 	}
 
 	public function search()
@@ -17,12 +16,9 @@ class TagController extends BaseController {
 		$tag_id = Route::input('tag_id');
 		$tag = Tags::getTagById($tag_id);
 
-        if ($tag == 'todo')
-        {
+        if ($tag == 'todo') {
             $media_list = DB::select('SELECT MA.id, MA.description FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY MA.id ASC', array($tag_id) );
-        }
-        else
-        {
+        } else {
             $media_list = DB::select('SELECT MA.id, MA.description FROM tag_media AS TM, medias AS MA WHERE TM.tag_id=? AND MA.id=TM.media_id ORDER BY TM.likes_per_tag DESC', array($tag_id) );
         }
 
@@ -34,8 +30,7 @@ class TagController extends BaseController {
 			return;
 		}
 
-		$this->layout->title = "Tag Videos";
-		$this->layout->nest('content', 'tag.search', $data);
+        return View::make('tag.search', $data);
 	}
 
 	public function rebuild() {
@@ -60,7 +55,7 @@ class TagController extends BaseController {
 
 		$data = array('log'=>$log);
 		$this->layout->title = "Rebuild Tags";
-		$this->layout->nest('content', 'tag.rebuild', $data);
+        return View::make('tag.rebuild', $data);
 	}
 
 	public function watch() {
