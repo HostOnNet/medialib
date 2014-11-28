@@ -26,8 +26,7 @@ class WatchController extends BaseController
 
         $last_viewed = $this->time_range($media->view_time);
 		$data = array('media' => $media, 'ref_page' => $ref_page, 'last_viewed' => $last_viewed, 'videos_in_playlist' => $videos_in_playlist);
-		$this->layout->title = 'WATCH';
-		$this->layout->nest('content','watch.show',$data);
+		return View::make('watch.show', $data);
     }
 
     function time_range($view_time)

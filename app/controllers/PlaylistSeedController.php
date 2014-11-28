@@ -2,12 +2,6 @@
 
 class PlaylistSeedController extends BaseController {
 
-    public function index()
-    {
-        $seeds = PlaylistSeed::all();
-        return View::make('playlistseed.index', ['seeds' => $seeds]);
-    }
-
     public function generate($seedId)
     {
         $playListSeed = PlaylistSeed::find($seedId);
@@ -62,9 +56,23 @@ class PlaylistSeedController extends BaseController {
     {
         $playListSeed = PlaylistSeed::find($seedId);
         $playListSeed->seed = Input::get('seed');
+        $playListSeed->name = Input::get('seedName');
         $playListSeed->save();
-        $url = '/playlist_seed_edit/' . $seedId;
-        return Redirect::to($url)->with('flash_message','Saved');
+        return Redirect::to('/playlists')->with('flash_message','Playlist Seed Saved');
     }
 
+    public function add()
+    {
+        return View::make('playlistseed.add');
+    }
+
+    public function addSave()
+    {
+        $seedName = Input::get('seedName');
+        $playListSeed = new PlaylistSeed();
+        $playListSeed->name = $seedName;
+        $playListSeed->save();
+        $url = '/playlist_seed_edit/' . $playListSeed->id;
+        return Redirect::to($url)->with('flash_message','Playlist Seed Added');
+    }
 } 

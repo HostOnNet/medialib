@@ -9,7 +9,8 @@ class PlaylistController extends BaseController
                                 inner join playlist_media
                                 ON playlists.id = playlist_media.pm_playlist_id
                                 Group BY playlists.name ORDER BY name ASC');
-		return View::make('playlist.index', array('playlists' => $playlists));
+        $seeds = PlaylistSeed::all();
+		return View::make('playlist.index', array('playlists' => $playlists, 'seeds' => $seeds));
 	}
 
     public function emptyPlaylist($playlist_id)

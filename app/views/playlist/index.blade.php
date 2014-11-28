@@ -9,8 +9,6 @@
     <h1>Playlists</h1>
 </div>
 
-
-<a href=/playlist_seeds  class="btn btn-lg btn-success">Playlist Seeds</a>
 <a href=/playlist_make/2 class="btn btn-lg btn-success">Best Medias</a>
 <a href=/playlist_make/1 class="btn btn-lg btn-success">Best Tags</a>
 
@@ -28,7 +26,40 @@ if ($tag_id) {
 <br>
 
 
-<h2>Recent</h2>
+<div class="page-header">
+    <h1>
+        Playlist Seeds
+        <a href="/playlist_seed_add" class="btn btn-success pull-right">New</a>
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <table class="table table-bordered table-hover">
+            <tr class="bg-info">
+                <td>PlayList Seed</td>
+                <td width="20%" class="text-center">Actions</td>
+            </tr>
+
+            @foreach ($seeds as $seed)
+
+            <tr>
+                <td><a href="/playlist_seed_generate/{{ $seed->id }}" class="btn btn-success btn-block">{{ $seed->name }}</a></td>
+                <td class="text-center"><a href="/playlist_seed_edit/{{ $seed->id }}" class="btn btn-warning btn-block">Edit</a></td>
+            </tr>
+
+            @endforeach
+
+        </table>
+
+    </div>
+</div>
+
+
+<div class="page-header">
+    <h1>Recent</h1>
+</div>
 
 <div class="row">
     <div class="col-md-12">
