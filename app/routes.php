@@ -52,4 +52,6 @@ Route::get('tools_join_medias_single','ToolsController@join_medias_single');
 Route::post('tools_join_medias_single','ToolsController@join_medias_single_post');
 Route::get('test','TestController@test');
 
-Route::any('playlist_seeds','PlaylistSeedsController@index');
+Route::get('playlist_seeds','PlaylistSeedsController@index');
+Route::get('playlist_seed_edit/{seed_id}','PlaylistSeedsController@edit')->where('seed_id','[0-9]+');
+Route::get('playlist_seed_generate/{seed_id}','PlaylistSeedsController@generate')->where('seed_id','[0-9]+');

@@ -16,7 +16,7 @@
 
             <tr>
                 <td><a href="/playlist_seed_generate/{{ $seed->id }}" class="btn btn-success btn-block">{{ $seed->name }}</a></td>
-                <td class="text-center"><a href="/playlist_seed_edit/{{ $seed->id }}" class="btn btn-warning">Edit</a></td>
+                <td class="text-center"><a href="/playlist_seed_edit/{{ $seed->id }}" class="btn btn-warning btn-block">Edit</a></td>
             </tr>
 
             @endforeach
