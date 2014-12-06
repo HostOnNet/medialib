@@ -85,8 +85,7 @@ class PlaylistController extends BaseController
             return Redirect::to($url);
         }
 
-		$this->layout->title = "Playlist Empty";
-		$this->layout->nest('content','playlist.nomedia', array('playlist_name' => Playlist::getName($playlist_id)));
+		return View::make('playlist.nomedia', array('playlist_name' => Playlist::getName($playlist_id)));
 	}
 
     public function make($playlist_id)
