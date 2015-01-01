@@ -153,8 +153,7 @@ class AddController extends BaseController
             }
         }
 
-        $this->layout->title = "Thumb Make";
-        $this->layout->nest('content','add.thumb', array('msg' => $msg) );
+        return View::make('add.thumb', array('msg' => $msg) );
     }
 
     public function thumb_single($media_id, $time)
@@ -209,8 +208,7 @@ class AddController extends BaseController
             $msg .= "Failed to create thumbnail for $media_id\n";
         }
 
-        $this->layout->title = "Thumb Make";
-        $this->layout->nest('content','add.thumb', array('msg' => $msg) );
+        return View::make('add.thumb', array('msg' => $msg) );
     }
 
     public function rebuild_media_likes()
