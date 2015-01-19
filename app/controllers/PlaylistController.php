@@ -20,47 +20,49 @@ class PlaylistController extends BaseController
         return Redirect::to($url);
     }
 
+    public function browse($playlist_id)
+    {
+        self::_setAutoTag($playlist_id);
+        $medias = DB::select('SELECT * FROM `playlist_media` AS PM,
+                            `medias` AS M WHERE
+                            PM.pm_media_id=M.id AND
+                            PM.pm_playlist_id=?
+                            ORDER BY PM.pm_id ASC', [$playlist_id]);
+        return View::make('playlist.browse', ['medias' => $medias, 'playlist_id' => $playlist_id]);
+    }
+
 	public function view($playlist_id)
 	{
-
-		$playlist_name = Playlist::getName($playlist_id);
-
-        $non_tag_playlists = array('search', 'best tags', 'best medias','todays');
-
-		if (in_array($playlist_name, $non_tag_playlists))
-        {
-			$playlist_name = '';
-		}
-
+        self::_setAutoTag($playlist_id);
 		Settings::put('skip_to_bookmark', $playlist_name);
 		$url = '/playlist/watch/' . $playlist_id;
         return Redirect::to($url);
 	}
 
-	// public function watch()
-	// {
-	// 	$playlist_id = Input::get('playlist_id');
-	// 	Settings::set('watch_playlist_id', $playlist_id);
-	// 	Settings::set('watch_current_video', 0);
-	// 	$redirect_url = '/watch/';
-	// 	return Redirect::to($redirect_url);
-	// }
+    private function _setAutoTag($playlist_id)
+    {
+        $playlist_name = Playlist::getName($playlist_id);
+        $non_tag_playlists = array('search', 'best tags', 'best medias','todays');
+        if (in_array($playlist_name, $non_tag_playlists)) {
+            $playlist_name = '';
+        }
+        Settings::put('skip_to_bookmark', $playlist_name);
+    }
 
-	public function playlist_watch($playlist_id) {
-
+	public function playlist_watch($playlist_id)
+    {
         $time_past = time() - (5 * 60  * 60);
         $pm_id = '';
 
-        if ($playlist_id == 0)
-        {
-            $media = DB::select('SELECT id as pm_media_id from medias WHERE view_again > 0 AND view_time < ? ORDER BY view_again ASC LIMIT 1', array($time_past));
-        }
-        else if ($playlist_id == 1)
-        {
-            $media = DB::select('SELECT id as pm_media_id from medias where view_time < ? ORDER BY likes DESC LIMIT 1', array($time_past));
-        }
-        else
-        {
+        if ($playlist_id == 0) {
+            $media = DB::select('SELECT id as pm_media_id from medias WHERE
+                            view_again > 0 AND view_time < ?
+                            ORDER BY view_again ASC LIMIT 1', array($time_past));
+        } else if ($playlist_id == 1) {
+            $media = DB::select('SELECT id as pm_media_id from medias where
+                        view_time < ?
+                        ORDER BY likes DESC LIMIT 1', array($time_past));
+        } else {
             $media = DB::select('SELECT pm_media_id, pm_id from playlist_media WHERE pm_playlist_id=? ORDER BY pm_id ASC LIMIT 1', array($playlist_id));
 
             if (isset($media[0]->pm_id))
