@@ -34,7 +34,6 @@ class PlaylistController extends BaseController
 	public function view($playlist_id)
 	{
         self::_setAutoTag($playlist_id);
-		Settings::put('skip_to_bookmark', $playlist_name);
 		$url = '/playlist/watch/' . $playlist_id;
         return Redirect::to($url);
 	}

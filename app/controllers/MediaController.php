@@ -101,6 +101,10 @@ class MediaController extends BaseController {
                     }
                     Playlist::deleteFromPlaylist($media_id,$playlist_id, $pm_id);
                     $url_redirect =  '/playlist/watch/' . $playlist_id;
+                } else if ($action_name == 'browse') {
+                    $playlist_parts = explode('x', $action_value);
+                    $playlist_id = $playlist_parts[0];
+                    $url_redirect =  '/playlist-browse/' . $playlist_id;
                 }
             } else {
                 dd($_POST['ref_page']);

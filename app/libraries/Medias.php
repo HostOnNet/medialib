@@ -47,7 +47,14 @@ class Medias
         if ($ref_page == 'playlist-0') return false;
         $is_playlist = (strpos($ref_page, 'playlist') !== false);
         $is_tag = (strpos($ref_page, 'tag') !== false);
-        if ($is_playlist || $is_tag) {
+
+        if (strpos($ref_page, 'browse') !== false) {
+            $isBrowse = true;
+        } else {
+            $isBrowse = false;
+        }
+
+        if ($is_playlist || $is_tag || $isBrowse) {
             // This media need to be auto played, find where to start playing.
             $skip_to_bookmark = Settings::get('skip_to_bookmark');
             if (strlen($skip_to_bookmark) > 2)  {
