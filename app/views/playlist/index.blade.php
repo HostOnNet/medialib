@@ -12,6 +12,8 @@
 <a href="/playlist/0" class="btn btn-lg btn-success">Watch</a>
 <a href=/playlist_make/2 class="btn btn-lg btn-success">Best Medias</a>
 <a href=/playlist_make/1 class="btn btn-lg btn-success">Best Tags</a>
+<a href=/browse2 class="btn btn-lg btn-success">Browse Best Tags</a>
+
 <?php
 
 $tag_id = Tags::getId('todo');

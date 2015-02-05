@@ -54,7 +54,13 @@ class Medias
             $isBrowse = false;
         }
 
-        if ($is_playlist || $is_tag || $isBrowse) {
+        $ref_page_parts = explode('-', $ref_page);
+
+        if ($ref_page_parts[0] == 'browse2') {
+            $media_tag_time_id = $ref_page_parts[1];
+            $media_tag_time_record = DB::table('media_tag_time')->where('id','=',$media_tag_time_id)->first();
+            return  $media_tag_time_record->time_start;
+        } else if ($is_playlist || $is_tag || $isBrowse) {
             // This media need to be auto played, find where to start playing.
             $skip_to_bookmark = Settings::get('skip_to_bookmark');
             if (strlen($skip_to_bookmark) > 2)  {

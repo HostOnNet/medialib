@@ -31,6 +31,12 @@ class PlaylistController extends BaseController
         return View::make('playlist.browse', ['medias' => $medias, 'playlist_id' => $playlist_id]);
     }
 
+    public function browse2()
+    {
+        $medias = DB::select('SELECT MS.*, MTT.id AS mtt_id from `media_tag_time` AS MTT, `medias` AS MS WHERE MTT.media_id=MS.id ORDER BY MTT.likes DESC');
+        return View::make('playlist.browse2', ['medias' => $medias]);
+    }
+
 	public function view($playlist_id)
 	{
         self::_setAutoTag($playlist_id);

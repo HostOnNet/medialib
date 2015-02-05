@@ -105,6 +105,8 @@ class MediaController extends BaseController {
                     $playlist_parts = explode('x', $action_value);
                     $playlist_id = $playlist_parts[0];
                     $url_redirect =  '/playlist-browse/' . $playlist_id;
+                } else if ($action_name == 'browse2') {
+                    $url_redirect =  '/browse2';
                 }
             } else {
                 dd($_POST['ref_page']);
