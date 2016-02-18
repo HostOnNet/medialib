@@ -33,7 +33,10 @@ class PlaylistController extends BaseController
 
     public function browse2()
     {
-        $medias = DB::select('SELECT MS.*, MTT.id AS mtt_id from `media_tag_time` AS MTT, `medias` AS MS WHERE MTT.media_id=MS.id ORDER BY MTT.likes DESC');
+        $medias = DB::select('SELECT MS.*, MTT.id AS mtt_id from
+                        `media_tag_time` AS MTT,
+                        `medias` AS MS
+                        WHERE MTT.media_id=MS.id AND MTT.likes > 4 ORDER BY MTT.likes DESC');
         return View::make('playlist.browse2', ['medias' => $medias]);
     }
 
@@ -116,7 +119,10 @@ class PlaylistController extends BaseController
 
             Playlist::emptyById($playlist_id);
 
-            $media_list = DB::table('media_tag_time')->orderBy('likes','DESC')->get();
+            $media_list = DB::table('media_tag_time')'
+                ->orderBy('likes','DESC')
+                ->where('likes','>',2)
+                ->get();
 
             foreach ($media_list as $media)
             {
