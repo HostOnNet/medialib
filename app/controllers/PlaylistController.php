@@ -119,7 +119,7 @@ class PlaylistController extends BaseController
 
             Playlist::emptyById($playlist_id);
 
-            $media_list = DB::table('media_tag_time')'
+            $media_list = DB::table('media_tag_time')
                 ->orderBy('likes','DESC')
                 ->where('likes','>',2)
                 ->get();

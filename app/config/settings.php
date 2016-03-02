@@ -7,7 +7,7 @@ if (isset($_SERVER["WINDIR"])) {
     $MEDIA_DIR_PUBLIC = '/home/boby/store/cbt/www/';
     $ffmpeg_path = 'C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe';
 } else {
-    $MEDIA_DIR_PRIVATE = "/mnt/x/dn/vid/";
+    $MEDIA_DIR_PRIVATE = "/mnt/tmp/dn/vid/";
     $MEDIA_DIR_PUBLIC = '/home/boby/store/cbt/www/';
     $ffmpeg_path = '/home/boby/bin/ffmpeg';
 }

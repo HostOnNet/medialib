@@ -59,7 +59,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  =>  $dbName,
 			'username'  => 'root',
-			'password'  => 'flashwebhost',
+			'password'  => 'hostonnet',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
