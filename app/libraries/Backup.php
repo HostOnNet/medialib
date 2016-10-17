@@ -22,7 +22,7 @@ class Backup
         if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
             $backup_cmd = "\"C:\\Program Files\\mysql\\bin\\mysqldump.exe\" -u root -pflashwebhost xyl > $backup_file";
         } else {
-            $backup_cmd = "/usr/bin/mysqldump -u root -phostonnet xyl > $backup_file";
+            $backup_cmd = "/usr/bin/mysqldump -u root -pflashwebhost xyl > $backup_file";
         }
 
         system($backup_cmd);
