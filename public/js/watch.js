@@ -72,6 +72,18 @@ function vlc_seek(time_to_seek)
     }
 }
 
+function seekToTime(ts) {
+    console.log("Seeking to time: " + ts);
+    player.pause();
+    player.currentTime = ts;
+    var timer = setInterval(function() {
+        if (player.paused && player.readyState ==4 || !player.paused) {
+            player.play();
+            clearInterval(timer);
+        }
+    }, 50);
+}
+
 $(document).ready(function()
     {
 
@@ -98,7 +110,7 @@ $(document).ready(function()
             event.preventDefault();
             if(player)
             {
-                vlc_seek(player.input.time + 10000);
+                seekToTime(player.currentTime + 10);
             }
         });
 
@@ -107,7 +119,7 @@ $(document).ready(function()
             event.preventDefault();
             if(player)
             {
-                vlc_seek(player.input.time - 10000);
+                seekToTime(player.currentTime - 10);
             }
         });
 
